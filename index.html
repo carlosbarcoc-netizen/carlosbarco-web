@@ -8,6 +8,7 @@
 <meta property="og:title" content="Crea tu negocio digital con IA">
 <meta property="og:description" content="Franquicia IA y videos virales con IA. Empieza hoy.">
 <meta property="og:type" content="website">
+<meta property="og:image" content="https://carlosbarco-web.vercel.app/img/carlos.jpg">
 <meta name="theme-color" content="#0B0D12">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -94,6 +95,18 @@ h1{font-size:clamp(2.3rem,5.6vw,4.1rem);line-height:1.05;letter-spacing:-.035em;
 .step small{display:block;color:var(--muted);font-weight:500;font-size:.8rem}
 .ok{margin-top:16px;padding:14px;border-radius:14px;background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.35);color:#7CF0A8;font-weight:700;font-size:.92rem;display:flex;gap:10px;align-items:center}
 
+.photo{position:relative;margin:0;justify-self:center;width:100%;max-width:440px}
+.photo::before{content:"";position:absolute;inset:-14px;border-radius:32px;background:linear-gradient(140deg,var(--accent),#DD2A7B 55%,transparent 80%);opacity:.55;filter:blur(28px);z-index:-1}
+.photo img{display:block;width:100%;height:auto;aspect-ratio:3/4;object-fit:cover;border-radius:26px;border:1px solid var(--line);box-shadow:0 40px 80px -30px rgba(0,0,0,.8)}
+.float{position:absolute;display:flex;gap:10px;align-items:center;padding:12px 16px;border-radius:16px;background:rgba(17,20,27,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--line);font-weight:800;font-size:.92rem;line-height:1.25;box-shadow:0 18px 40px -16px rgba(0,0,0,.8);animation:bob 5s ease-in-out infinite}
+.float b{font-size:1.4rem}
+.float small{display:block;color:var(--muted);font-weight:600;font-size:.78rem}
+.f1{left:-28px;bottom:70px}
+.f2{right:-22px;top:46px;animation-delay:-2.5s}
+@keyframes bob{50%{transform:translateY(-8px)}}
+.about{display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:center}
+.about-p{color:var(--muted);font-size:1.06rem;margin-bottom:16px}
+.about .cta-row{margin-top:22px}
 /* Secciones */
 section{padding:100px 0}
 .alt{background:var(--bg2);border-block:1px solid var(--line)}
@@ -179,6 +192,8 @@ footer .disc{font-size:.8rem;opacity:.75;max-width:820px}
 @media (max-width:960px){
   .hero .wrap{grid-template-columns:1fr}
   .grid3{grid-template-columns:1fr 1fr}
+  .about{grid-template-columns:1fr}
+  .photo{max-width:380px}
   .social{grid-template-columns:1fr}
   .steps{grid-template-columns:1fr 1fr}
   .products{grid-template-columns:1fr}
@@ -196,6 +211,9 @@ footer .disc{font-size:.8rem;opacity:.75;max-width:820px}
   .product,.quiz{padding:26px 20px}
   .cta-row .btn{width:100%}
   .wa-float span{display:none}
+  .f1{left:-6px;bottom:40px}
+  .f2{right:-6px;top:26px}
+  .float{font-size:.82rem;padding:10px 12px}
   .wa-float{padding:16px}
   .trust{gap:20px}
 }
@@ -208,6 +226,7 @@ footer .disc{font-size:.8rem;opacity:.75;max-width:820px}
   <div class="wrap nav">
     <a href="#" class="logo"><i>IA</i>@carlosbarcoc</a>
     <nav class="links" id="links">
+      <a href="#sobre-mi">Sobre mí</a>
       <a href="#que-hago">Qué enseño</a>
       <a href="#programas">Programas</a>
       <a href="#test">Test</a>
@@ -245,6 +264,30 @@ footer .disc{font-size:.8rem;opacity:.75;max-width:820px}
       </div>
     </div>
 
+    <figure class="photo reveal">
+      <picture>
+        <source srcset="img/carlos.webp" type="image/webp">
+        <img src="img/carlos.jpg" width="800" height="1067" alt="Carlos Barco, @carlosbarcoc" fetchpriority="high">
+      </picture>
+      <figcaption class="float f1"><b>🤖</b><span>Negocios digitales<small>con inteligencia artificial</small></span></figcaption>
+      <div class="float f2" aria-hidden="true"><b>🎬</b><span>Videos virales<small>que hacen crecer tu Instagram</small></span></div>
+    </figure>
+  </div>
+</section>
+
+<!-- SOBRE MÍ -->
+<section id="sobre-mi">
+  <div class="wrap about">
+    <div class="reveal">
+      <div class="kicker">Sobre mí</div>
+      <h2>Hola, soy Carlos 👋</h2>
+      <p class="about-p">Ayudo a personas como tú a crear su negocio digital usando la inteligencia artificial: un sistema que trabaja por ti y videos que atraen a tu público, sin necesidad de ser experto en tecnología.</p>
+      <p class="about-p">Creo que se puede emprender con propósito y con valores. Por eso enseño de forma simple, honesta y paso a paso, para que des tu primer paso hoy.</p>
+      <div class="cta-row">
+        <a class="btn btn-wa" href="https://wa.link/25yiii" target="_blank" rel="noopener">Escríbeme por WhatsApp</a>
+        <a class="btn btn-ghost" href="https://www.instagram.com/carlosbarcoc/" target="_blank" rel="noopener">Sígueme en Instagram</a>
+      </div>
+    </div>
     <div class="panel reveal" aria-hidden="true">
       <div class="panel-top"><div class="dots"><span></span><span></span><span></span></div>Tu sistema con IA</div>
       <div class="flow" id="flow">
