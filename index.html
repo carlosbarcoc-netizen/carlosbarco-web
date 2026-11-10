@@ -34,6 +34,9 @@ img,svg{display:block;max-width:100%}
 .btn-primary:hover{box-shadow:0 14px 36px -10px rgba(255,59,48,.9)}
 .btn-ghost{background:transparent;color:var(--text);border:1.5px solid var(--line)}
 .btn-ghost:hover{border-color:var(--text)}
+.btn-ig{background:linear-gradient(90deg,#F58529,#DD2A7B 50%,#8134AF);color:#fff;box-shadow:0 10px 30px -10px rgba(221,42,123,.75);background-size:200% 100%;animation:shine 4s ease-in-out infinite}
+.btn-ig:hover{box-shadow:0 14px 36px -10px rgba(221,42,123,.95)}
+@keyframes shine{50%{background-position:100% 0}}
 .btn-wa{background:var(--wa);color:#0B2914;box-shadow:0 10px 30px -10px rgba(37,211,102,.7)}
 .btn svg{width:20px;height:20px;flex:none}
 
@@ -285,7 +288,7 @@ footer .disc{font-size:.8rem;opacity:.75;max-width:820px}
           <li>Más alcance, más seguidores, más clientes</li>
           <li>Ideal para impulsar tu negocio digital</li>
         </ul>
-        <a class="btn btn-ghost" href="https://whop.com/instagram-c387/barcada-videos-virales-animados-con-ia?a=carlosbarcoc" target="_blank" rel="noopener">Quiero crear videos virales</a>
+        <a class="btn btn-ig" href="https://whop.com/instagram-c387/barcada-videos-virales-animados-con-ia?a=carlosbarcoc" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>Quiero crear videos virales</a>
       </article>
     </div>
   </div>
@@ -426,7 +429,7 @@ footer .disc{font-size:.8rem;opacity:.75;max-width:820px}
   ];
   var RESULTS = {
     ingresos: { e: "🚀", t: "Tu camino: Franquicia IA", d: "Lo tuyo es tener un sistema automatizado que genere ingresos digitales. Empieza por la clase gratuita.", href: LINKS.clase, cta: "Ver la clase gratuita" },
-    videos:   { e: "🎬", t: "Tu camino: Videos virales con IA", d: "Lo tuyo es crecer en Instagram y llegar a tu público más rápido con videos en tendencia.", href: LINKS.videos, cta: "Quiero crear videos virales" },
+    videos:   { e: "🎬", t: "Tu camino: Videos virales con IA", d: "Lo tuyo es crecer en Instagram y llegar a tu público más rápido con videos en tendencia.", href: LINKS.videos, cta: "Quiero crear videos virales", cls: "btn-ig" },
     ambos:    { e: "🔥", t: "Tu camino: el combo completo", d: "Un sistema que genera ingresos y videos virales que te traen el público. Empieza por la clase y escríbeme para armar tu plan.", href: LINKS.clase, cta: "Ver la clase gratuita" }
   };
   var quiz = document.getElementById("quiz"), step = 0, score = {};
@@ -451,7 +454,7 @@ footer .disc{font-size:.8rem;opacity:.75;max-width:820px}
       quiz.innerHTML =
         '<div class="bar"><span style="width:100%"></span></div>' +
         '<div class="result"><div class="big">' + r.e + '</div><h4>' + r.t + '</h4><p>' + r.d + '</p>' +
-        '<div class="cta-row"><a class="btn btn-primary" href="' + r.href + '" target="_blank" rel="noopener">' + r.cta + '</a>' +
+        '<div class="cta-row"><a class="btn ' + (r.cls || 'btn-primary') + '" href="' + r.href + '" target="_blank" rel="noopener">' + r.cta + '</a>' +
         '<a class="btn btn-wa" href="' + LINKS.wa + '" target="_blank" rel="noopener">Quiero empezar mi negocio digital</a></div>' +
         '<button class="linkbtn" id="again">Repetir el test</button></div>';
       document.getElementById("again").addEventListener("click", function(){ step = 0; score = {}; render(); });
