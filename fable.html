@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guía práctica: 5 formas de usar Fable 5.2 que se pueden cobrar · @carlosbarcoc</title>
+<meta name="description" content="Guía interactiva y gratuita: 5 servicios que puedes ofrecer con Claude Fable 5.2, con pasos, prompts que se arman solos, listas de revisión y cómo cobrarlos.">
+<meta property="og:title" content="5 formas de usar Fable 5.2 que se pueden cobrar">
+<meta property="og:description" content="Pasos, prompts listos para copiar y cómo convertir cada uso en ingreso. Gratis e interactiva.">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://carlosbarco-web.vercel.app/img/carlos.jpg">
+<meta name="theme-color" content="#F4F2ED">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@300;400;500;600&family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23C4613F'/%3E%3Ctext x='32' y='44' font-family='Arial' font-weight='900' font-size='34' text-anchor='middle' fill='white'%3EIA%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --paper:#F4F2ED; --white:#FFFFFF; --sand:#E9E1D4; --beige:#DCCFBE;
+  --ink:#1C1A17; --ink2:#26231F; --gray:#5E5952;
+  --accent:#C4613F; --accent-d:#A94F31; --tint:#F5E6DD; --sage:#2F7A4F;
+  --radius:16px; --max:920px;
+  --head:Anton,Impact,"Arial Narrow",sans-serif; --cond:Oswald,"Arial Narrow",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:Figtree,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+.grad{color:var(--accent)}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 24px;border-radius:12px;font-family:var(--cond);font-weight:600;font-size:1rem;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;border:2px solid transparent;transition:transform .2s;text-align:center;line-height:1.2}
+.btn:hover{transform:translateY(-2px)}
+.btn svg{width:19px;height:19px;flex:none}
+.btn-primary{background:var(--accent);color:#fff;box-shadow:0 5px 0 var(--accent-d)}
+.btn-wa{background:var(--sage);color:#fff;box-shadow:0 5px 0 #235E3C}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--beige)}
+.btn-ghost:hover{border-color:var(--ink)}
+.btn-sm{padding:9px 16px;font-size:.85rem}
+
+header{position:sticky;top:0;z-index:50;background:rgba(244,242,237,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--beige)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:64px;gap:12px}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--cond);font-weight:600;font-size:1.1rem;letter-spacing:.05em;white-space:nowrap}
+.logo i{width:32px;height:32px;border-radius:9px;background:var(--accent);color:#fff;display:grid;place-items:center;font-style:normal;font-family:var(--head);font-size:.9rem}
+.progress-top{height:3px;background:var(--sand)}
+.progress-top span{display:block;height:100%;width:0;background:var(--accent);transition:width .15s linear}
+
+.cover{padding:64px 0 40px;text-align:center;position:relative}
+.cover::before{content:"";position:absolute;width:min(560px,90vw);height:min(560px,90vw);left:50%;top:-40px;transform:translateX(-50%);border-radius:50%;background:var(--sand);opacity:.6;pointer-events:none;z-index:-1}
+.tag{display:inline-block;padding:7px 14px;border-radius:999px;border:1.5px solid var(--beige);background:var(--white);color:var(--gray);font-family:var(--cond);font-weight:500;letter-spacing:.14em;text-transform:uppercase;font-size:.8rem;margin-bottom:22px}
+h1{font-family:var(--head);font-weight:400;text-transform:uppercase;font-size:clamp(2.4rem,7vw,4.2rem);line-height:1.02;margin-bottom:20px}
+.cover p{color:var(--gray);font-family:var(--cond);font-weight:300;font-size:1.3rem;line-height:1.45;max-width:660px;margin:0 auto 28px}
+.author{display:inline-flex;align-items:center;gap:12px;margin:0 auto 24px;padding:8px 18px 8px 8px;border-radius:999px;background:var(--white);border:1.5px solid var(--beige);text-align:left;box-shadow:0 4px 0 var(--sand)}
+.author img{width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid var(--accent);display:block}
+.author span{font-size:.95rem;line-height:1.25}
+.author small{display:block;color:var(--gray);font-size:.8rem}
+.cover-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:26px}
+.meta{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;color:var(--gray);font-family:var(--cond);letter-spacing:.06em;text-transform:uppercase;font-size:.88rem}
+.meta b{color:var(--accent);font-weight:600}
+
+.ch{padding:60px 0;border-top:2px solid var(--beige);scroll-margin-top:68px}
+.ch-n{color:var(--accent);font-family:var(--cond);font-weight:500;letter-spacing:.22em;text-transform:uppercase;font-size:.85rem;margin-bottom:10px}
+h2{font-family:var(--head);font-weight:400;text-transform:uppercase;font-size:clamp(2rem,5vw,3rem);line-height:1.05;margin-bottom:16px}
+h2::after{content:"";display:block;width:90px;height:4px;background:var(--accent);margin-top:16px}
+.intro{color:var(--gray);font-family:var(--cond);font-weight:300;font-size:1.22rem;line-height:1.5;margin-bottom:28px}
+.intro b{font-weight:600;color:var(--ink)}
+h3{font-family:var(--cond);font-size:1.3rem;font-weight:600;margin-bottom:8px;line-height:1.25}
+h4{color:var(--accent);font-family:var(--cond);font-weight:500;font-size:.85rem;margin:0 0 12px;text-transform:uppercase;letter-spacing:.16em}
+.card{background:var(--white);border:2px solid var(--beige);border-radius:var(--radius);padding:24px;box-shadow:0 6px 0 var(--sand)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.tip{display:flex;gap:12px;margin-top:22px;padding:16px 18px;border-radius:12px;background:var(--tint);border-left:4px solid var(--accent);font-size:.98rem}
+.tip b{color:var(--accent-d)}
+
+/* Reglas */
+.rules{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.rule{display:flex;gap:14px;padding:20px;border-radius:14px;background:var(--white);border:2px solid var(--beige);box-shadow:0 5px 0 var(--sand)}
+.rule .n{font-family:var(--head);font-size:2.2rem;line-height:1;color:var(--accent);flex:none;width:30px}
+.rule p{color:var(--gray);font-size:.95rem}
+
+/* Quiz */
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.opt{text-align:left;padding:14px 16px;border-radius:12px;border:2px solid var(--beige);background:var(--paper);cursor:pointer;font-weight:600;transition:border-color .2s,background .2s}
+.opt:hover{border-color:var(--accent)}
+.opt.on{background:var(--ink);border-color:var(--ink);color:#F4F2ED}
+.reco{display:none;margin-top:18px;padding:18px;border-radius:12px;background:var(--tint);border-left:4px solid var(--accent);animation:pop .35s ease}
+.reco.show{display:block}
+.reco p{margin-bottom:12px}
+@keyframes pop{from{opacity:0;transform:translateY(6px)}}
+
+/* Pestañas de usos */
+.tabs{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:20px}
+.tab{padding:12px 8px;border-radius:12px;border:2px solid var(--beige);background:var(--white);cursor:pointer;text-align:center;box-shadow:0 4px 0 var(--sand);transition:border-color .2s}
+.tab:hover{border-color:var(--accent)}
+.tab b{display:block;font-family:var(--head);font-weight:400;font-size:1.6rem;line-height:1;color:var(--accent)}
+.tab span{font-family:var(--cond);font-weight:500;font-size:.82rem;letter-spacing:.05em;text-transform:uppercase;line-height:1.2;display:block;margin-top:4px}
+.tab.on{background:var(--ink);border-color:var(--ink);color:#F4F2ED;box-shadow:0 4px 0 var(--accent)}
+.tab.on b{color:#E58A66}
+.tab:focus-visible,.opt:focus-visible,.sw:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+.use{animation:pop .3s ease}
+.use-head{margin-bottom:22px}
+.use-head h3{font-family:var(--head);font-weight:400;text-transform:uppercase;font-size:clamp(1.6rem,4vw,2.2rem);line-height:1.08}
+.use-head p{color:var(--gray);font-family:var(--cond);font-weight:300;font-size:1.18rem;line-height:1.45;margin-top:8px}
+.pill{display:inline-block;margin-top:12px;padding:5px 12px;border-radius:8px;background:var(--sand);font-family:var(--cond);font-size:.8rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase}
+.steps{list-style:none;counter-reset:s;display:flex;flex-direction:column;gap:14px}
+.steps li{counter-increment:s;display:flex;gap:14px}
+.steps li::before{content:counter(s);flex:none;width:30px;height:30px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-family:var(--cond);font-weight:600;font-size:.95rem;margin-top:1px}
+.steps span{color:var(--gray)}
+.steps b{color:var(--ink)}
+.block{margin-top:18px}
+
+/* Constructor de prompts */
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-family:var(--cond);font-weight:500;letter-spacing:.08em;text-transform:uppercase;font-size:.8rem;color:var(--gray)}
+.field input{background:var(--paper);border:2px solid var(--beige);color:var(--ink);border-radius:10px;padding:11px 13px;font:inherit;font-size:1rem;width:100%}
+.field input:focus{outline:none;border-color:var(--accent)}
+.prompt{background:var(--ink);color:#EDE7DD;border-radius:12px;padding:18px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.9rem;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere;border-left:5px solid var(--accent)}
+.prompt mark{background:transparent;color:#E58A66}
+.prompt mark.f{color:#fff;background:rgba(196,97,63,.55);border-radius:4px;padding:0 3px}
+.prompt-bar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:12px}
+.prompt-bar small{color:var(--gray);font-size:.86rem}
+
+/* Checklist */
+.task{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-top:1.5px solid var(--sand);cursor:pointer}
+.task:first-of-type{border-top:0}
+.task input{appearance:none;-webkit-appearance:none;width:22px;height:22px;border-radius:6px;border:2px solid var(--beige);background:var(--paper);flex:none;margin-top:2px;cursor:pointer;display:grid;place-items:center}
+.task input:checked{background:var(--accent);border-color:var(--accent)}
+.task input:checked::after{content:"";width:6px;height:11px;border:solid #fff;border-width:0 3px 3px 0;transform:rotate(45deg) translate(-1px,-1px)}
+.task input:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.task input:checked + span{color:#9C958C;text-decoration:line-through}
+ul.money{list-style:none;display:flex;flex-direction:column;gap:12px}
+ul.money li{display:flex;gap:10px;color:var(--gray)}
+ul.money li::before{content:"→";color:var(--accent);font-weight:900;flex:none}
+ul.money b{color:var(--ink)}
+
+/* Demo producto */
+.demo{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:center}
+.stage{height:240px;border-radius:14px;background:var(--paper);border:2px dashed var(--beige);display:grid;place-items:center;perspective:700px;cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none}
+.stage:active{cursor:grabbing}
+.cube{--c:#C4613F;width:110px;height:150px;position:relative;transform-style:preserve-3d;transform:rotateX(-14deg) rotateY(32deg)}
+.cube i{position:absolute;inset:0;background:var(--c);border:2px solid rgba(0,0,0,.18);display:grid;place-items:center;font-style:normal;font-family:var(--head);color:rgba(255,255,255,.9);font-size:1.1rem;letter-spacing:.06em;transition:background .3s}
+.cube i:nth-child(1){transform:translateZ(55px)}
+.cube i:nth-child(2){transform:rotateY(180deg) translateZ(55px);filter:brightness(.8)}
+.cube i:nth-child(3){transform:rotateY(90deg) translateZ(55px);filter:brightness(.88)}
+.cube i:nth-child(4){transform:rotateY(-90deg) translateZ(55px);filter:brightness(.88)}
+.cube i:nth-child(5){height:110px;transform:rotateX(90deg) translateZ(55px);filter:brightness(1.12)}
+.cube i:nth-child(6){height:110px;top:auto;bottom:0;transform:rotateX(-90deg) translateZ(55px);filter:brightness(.6)}
+.sws{display:flex;gap:10px;margin:12px 0 16px}
+.sw{width:38px;height:38px;border-radius:50%;border:3px solid var(--white);box-shadow:0 0 0 2px var(--beige);cursor:pointer}
+.sw.on{box-shadow:0 0 0 3px var(--ink)}
+.price{font-family:var(--head);font-size:2.6rem;line-height:1}
+.demo small{color:var(--gray)}
+
+/* Roles */
+.roles{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:10px;align-items:stretch}
+.role{padding:16px;border-radius:12px;border:2px solid var(--beige);background:var(--paper);font-size:.92rem;color:var(--gray)}
+.role b{display:block;font-family:var(--cond);font-size:1.05rem;color:var(--ink);text-transform:uppercase;letter-spacing:.05em}
+.role.hi{background:var(--ink);border-color:var(--ink);color:#BDB5AA}
+.role.hi b{color:#F4F2ED}
+.arrow{align-self:center;font-family:var(--head);font-size:1.5rem;color:var(--accent)}
+
+/* Calculadora */
+.calc{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.total{margin-top:18px;padding:20px;border-radius:14px;background:var(--ink);color:#F4F2ED;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;box-shadow:0 6px 0 var(--accent)}
+.total small{color:#BDB5AA;display:block;font-size:.88rem}
+.total .big{font-family:var(--head);font-size:2.6rem;line-height:1;font-variant-numeric:tabular-nums}
+
+.next{background:var(--ink);color:#F4F2ED;border-radius:22px;padding:48px 28px;text-align:center;box-shadow:0 10px 0 var(--accent)}
+.next .ch-n{color:#E58A66}
+.next h2::after{margin-left:auto;margin-right:auto}
+.next p{color:#BDB5AA;max-width:580px;margin:0 auto 26px;font-family:var(--cond);font-weight:300;font-size:1.2rem;line-height:1.5}
+.stack{display:flex;flex-direction:column;gap:14px;max-width:460px;margin:0 auto}
+.stack .btn{width:100%}
+
+footer{padding:40px 0 110px;color:#BDB5AA;font-size:.86rem;background:var(--ink);margin-top:56px}
+footer .soc{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:12px}
+footer .soc a{color:#F4F2ED;font-family:var(--cond);font-weight:500;letter-spacing:.08em;text-transform:uppercase;font-size:.85rem}
+footer .soc a:hover{color:#E58A66}
+footer p + p{margin-top:8px}
+
+.wa-float{position:fixed;right:18px;bottom:18px;z-index:60;height:58px;padding:0 20px 0 16px;border-radius:999px;background:var(--sage);color:#fff;display:flex;align-items:center;gap:10px;font-family:var(--cond);font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-size:.9rem;box-shadow:0 12px 28px -10px rgba(28,26,23,.55)}
+.wa-float svg{width:28px;height:28px;flex:none}
+
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);opacity:0;background:var(--ink);color:#F4F2ED;font-family:var(--cond);font-weight:500;letter-spacing:.06em;padding:12px 20px;border-radius:12px;z-index:70;transition:opacity .25s,transform .25s;pointer-events:none}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+@media (max-width:760px){
+  .grid2,.rules,.opts,.fields,.demo,.calc{grid-template-columns:1fr}
+  .tabs{grid-template-columns:repeat(5,1fr);gap:6px}
+  .tab{padding:10px 2px}
+  .tab span{display:none}
+  .roles{grid-template-columns:1fr}
+  .arrow{transform:rotate(90deg);justify-self:center}
+  .ch{padding:48px 0}
+  .nav .btn{display:none}
+  .wa-float span{display:none}
+  .wa-float{width:58px;padding:0;justify-content:center}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="/" class="logo"><i>IA</i>@carlosbarcoc</a>
+    <a class="btn btn-wa btn-sm" href="https://chat.whatsapp.com/HHZ62Td03kJEUB9937SoiW" target="_blank" rel="noopener">Unirme a la comunidad</a>
+  </div>
+  <div class="progress-top"><span id="readbar"></span></div>
+</header>
+
+<main class="wrap">
+
+<section class="cover">
+  <div class="tag">Guía práctica · Claude Fable 5.2</div>
+  <h1>5 formas de usar Fable 5.2 <span class="grad">que se pueden cobrar</span></h1>
+  <p>Cinco servicios que puedes ofrecer con Claude Fable 5.2. En cada uno: los pasos, un prompt que se arma con tus datos, la lista para revisar antes de entregar y la forma de cobrarlo.</p>
+  <div class="author"><picture><source srcset="img/carlos-avatar.webp" type="image/webp"><img src="img/carlos-avatar.jpg" width="56" height="56" alt="Carlos Barco"></picture><span>Por <b>Carlos Barco</b><small>@carlosbarcoc · Negocios digitales con IA</small></span></div>
+  <div class="cover-cta">
+    <a class="btn btn-primary" href="#usos">Ver los 5 usos</a>
+    <a class="btn btn-wa" href="https://chat.whatsapp.com/HHZ62Td03kJEUB9937SoiW" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1s-.5-.1-.7.1-.8 1-.9 1.2-.3.2-.6.1a8.2 8.2 0 0 1-4.1-3.6c-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6a1.2 1.2 0 0 0-.8.4 3.5 3.5 0 0 0-1.1 2.6 6 6 0 0 0 1.3 3.2 13.9 13.9 0 0 0 5.3 4.7c2 .8 2.7.9 3.7.8a3.1 3.1 0 0 0 2-1.4 2.5 2.5 0 0 0 .2-1.4c-.1-.2-.3-.3-.6-.4zM12 21.8a9.9 9.9 0 0 1-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.8 9.8 0 1 1 12 21.8zm8.4-18.2A11.8 11.8 0 0 0 1.8 17.8L.1 24l6.4-1.7a11.8 11.8 0 0 0 5.6 1.4A11.8 11.8 0 0 0 20.4 3.6z"/></svg>Comunidad de WhatsApp
+    </a>
+  </div>
+  <div class="meta"><span><b>5</b> usos</span><span><b>5</b> prompts armables</span><span><b>4</b> reglas</span><span><b>Interactiva</b></span></div>
+</section>
+
+<!-- REGLAS -->
+<section class="ch" id="reglas">
+  <div class="ch-n">Antes de empezar</div>
+  <h2>4 reglas que aplican a todo</h2>
+  <p class="intro">Fable hace buena parte del trabajo. Lo que el cliente paga es <b>tu criterio</b>: cómo lo diriges y cómo revisas lo que entrega.</p>
+  <div class="rules">
+    <div class="rule"><div class="n">1</div><div><h3>Contexto primero</h3><p>Cuéntale quién es el cliente, qué vende y a quién le habla. Sin eso, el resultado sirve para cualquiera y por tanto para nadie.</p></div></div>
+    <div class="rule"><div class="n">2</div><div><h3>Trabaja por rondas</h3><p>Primero la estructura, después el detalle. Arreglar la base cuesta menos que pulir algo mal planteado.</p></div></div>
+    <div class="rule"><div class="n">3</div><div><h3>Guarda lo que funciona</h3><p>Cuando un prompt da buen resultado, conviértelo en plantilla. Reutilizarla es lo que te deja margen.</p></div></div>
+    <div class="rule"><div class="n">4</div><div><h3>Revisa antes de entregar</h3><p>La IA falla en datos, precios y detalles de diseño. Tu revisión es parte del servicio.</p></div></div>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section class="ch" id="elige">
+  <div class="ch-n">Punto de partida</div>
+  <h2>¿Por cuál empiezo?</h2>
+  <p class="intro">Empieza por el uso que más se parezca a algo que ya sabes hacer. Querer vender los cinco a la vez es el error más común.</p>
+  <div class="card">
+    <h3>¿Qué describe mejor lo que ya haces?</h3>
+    <div class="opts" id="opts" style="margin-top:14px"></div>
+    <div class="reco" id="reco" aria-live="polite"></div>
+  </div>
+</section>
+
+<!-- USOS -->
+<section class="ch" id="usos">
+  <div class="ch-n">Los 5 usos</div>
+  <h2>Elige uno y aplícalo</h2>
+  <p class="intro">Completa los campos de cada prompt y cópialo listo para pegar en Claude.</p>
+  <div class="tabs" id="tabs" role="tablist" aria-label="Usos"></div>
+  <div id="panel" role="tabpanel"></div>
+</section>
+
+<!-- EMPEZAR A COBRAR -->
+<section class="ch" id="cobrar">
+  <div class="ch-n">Del uso al ingreso</div>
+  <h2>Cómo empezar a cobrar</h2>
+  <p class="intro">Cuatro pasos, en este orden.</p>
+  <div class="card">
+    <ol class="steps">
+      <li><span><b>Elige un solo uso.</b> El más cercano a lo que ya sabes hacer.</span></li>
+      <li><span><b>Arma un demo.</b> Con tu propia marca o con un negocio que conozcas bien.</span></li>
+      <li><span><b>Pon dos precios.</b> Uno por proyecto y una oferta mensual que se repita.</span></li>
+      <li><span><b>Consigue tus primeros clientes</b> con ese uso antes de abrir el siguiente.</span></li>
+    </ol>
+  </div>
+
+  <div class="card block">
+    <h4>Calculadora de oferta</h4>
+    <div class="calc">
+      <div class="field"><label for="k1">Proyectos al mes</label><input id="k1" type="number" min="0" inputmode="numeric" value="2"></div>
+      <div class="field"><label for="k2">Precio por proyecto (USD)</label><input id="k2" type="number" min="0" inputmode="numeric" value="300"></div>
+      <div class="field"><label for="k3">Clientes con plan mensual</label><input id="k3" type="number" min="0" inputmode="numeric" value="3"></div>
+      <div class="field"><label for="k4">Cuota mensual (USD)</label><input id="k4" type="number" min="0" inputmode="numeric" value="80"></div>
+    </div>
+    <div class="total"><div><b style="font-family:var(--cond);letter-spacing:.06em;text-transform:uppercase">Ingreso mensual estimado</b><small id="split"></small></div><div class="big" id="total"></div></div>
+    <div class="tip"><span>Es una suma con los números que tú pones, no una promesa. Sirve para ver cuánto pesa la parte recurrente en tu oferta.</span></div>
+  </div>
+</section>
+
+<!-- COMUNIDAD -->
+<section class="ch">
+  <div class="next">
+    <div class="ch-n">Tu siguiente paso</div>
+    <h2>Aplícalo acompañado</h2>
+    <p>Únete a mi comunidad gratuita de WhatsApp: ahí comparto prompts, ejemplos y lo que voy aprendiendo sobre negocios digitales con IA.</p>
+    <div class="stack">
+      <a class="btn btn-wa" href="https://chat.whatsapp.com/HHZ62Td03kJEUB9937SoiW" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1s-.5-.1-.7.1-.8 1-.9 1.2-.3.2-.6.1a8.2 8.2 0 0 1-4.1-3.6c-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6a1.2 1.2 0 0 0-.8.4 3.5 3.5 0 0 0-1.1 2.6 6 6 0 0 0 1.3 3.2 13.9 13.9 0 0 0 5.3 4.7c2 .8 2.7.9 3.7.8a3.1 3.1 0 0 0 2-1.4 2.5 2.5 0 0 0 .2-1.4c-.1-.2-.3-.3-.6-.4zM12 21.8a9.9 9.9 0 0 1-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.8 9.8 0 1 1 12 21.8zm8.4-18.2A11.8 11.8 0 0 0 1.8 17.8L.1 24l6.4-1.7a11.8 11.8 0 0 0 5.6 1.4A11.8 11.8 0 0 0 20.4 3.6z"/></svg>Unirme a la comunidad de WhatsApp
+      </a>
+      <a class="btn btn-ghost" style="color:#F4F2ED;border-color:#5E5952" href="/guia">Ver la guía de Instagram 2026</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="soc">
+      <a href="/">Inicio</a>
+      <a href="/guia">Guía Instagram</a>
+      <a href="https://www.instagram.com/carlosbarcoc/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://chat.whatsapp.com/HHZ62Td03kJEUB9937SoiW" target="_blank" rel="noopener">Comunidad</a>
+    </div>
+    <p>© <span id="year"></span> @carlosbarcoc · Guía gratuita. Los resultados dependen de la aplicación de cada persona; esta guía no garantiza clientes ni ingresos.</p>
+    <p>Inspirada en la guía «Claude: 5 usos que se pueden cobrar» de @construyendoia. Claude y Fable son productos de Anthropic; esta página no está afiliada a Anthropic.</p>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://chat.whatsapp.com/HHZ62Td03kJEUB9937SoiW" target="_blank" rel="noopener" aria-label="Unirme a la comunidad de WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1s-.5-.1-.7.1-.8 1-.9 1.2-.3.2-.6.1a8.2 8.2 0 0 1-4.1-3.6c-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6a1.2 1.2 0 0 0-.8.4 3.5 3.5 0 0 0-1.1 2.6 6 6 0 0 0 1.3 3.2 13.9 13.9 0 0 0 5.3 4.7c2 .8 2.7.9 3.7.8a3.1 3.1 0 0 0 2-1.4 2.5 2.5 0 0 0 .2-1.4c-.1-.2-.3-.3-.6-.4zM12 21.8a9.9 9.9 0 0 1-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.8 9.8 0 1 1 12 21.8zm8.4-18.2A11.8 11.8 0 0 0 1.8 17.8L.1 24l6.4-1.7a11.8 11.8 0 0 0 5.6 1.4A11.8 11.8 0 0 0 20.4 3.6z"/></svg><span>Comunidad</span>
+</a>
+
+<div class="toast" id="toast">¡Copiado!</div>
+
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  $("year").textContent = new Date().getFullYear();
+
+  function store(k, v){ try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch(e){ return null; } }
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+  var toastT;
+  function toast(msg){ var t = $("toast"); t.textContent = msg; t.classList.add("show"); clearTimeout(toastT); toastT = setTimeout(function(){ t.classList.remove("show"); }, 1600); }
+  function copy(text){
+    function ok(){ toast("¡Prompt copiado!"); }
+    function fallback(){ var ta = document.createElement("textarea"); ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select(); try { document.execCommand("copy"); ok(); } catch(e){} document.body.removeChild(ta); }
+    if (navigator.clipboard && window.isSecureContext){ navigator.clipboard.writeText(text).then(ok, fallback); } else fallback();
+  }
+
+  /* Barra de lectura */
+  function readbar(){ var h = document.documentElement; var max = h.scrollHeight - h.clientHeight; $("readbar").style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + "%"; }
+  addEventListener("scroll", readbar, {passive:true}); readbar();
+
+  /* ---------- Contenido ---------- */
+  var USES = [
+    {
+      short:"Sitio web", title:"Sitio web a partir de 5 referencias",
+      what:"Le das a Fable cinco sitios que te gustan y le dices qué tomar de cada uno. Con eso construye una página nueva para tu cliente.",
+      sells:"Sitio nuevo o rediseño, por proyecto", client:"Negocios locales, coaches y consultores",
+      steps:[
+        ["Elige cada referencia por un motivo.","De una el menú, de otra la tipografía, de otra el ritmo de las secciones. Cinco sitios al azar dan un resultado revuelto."],
+        ["Indica qué tomar de cada una.","Sube capturas o pega los enlaces y nombra el rasgo: color, tipografía, espaciado o estructura. Se toma el estilo; nunca los textos, las imágenes ni los logos de otros."],
+        ["Define una sola acción.","Agendar, comprar o registrarse. Toda la página se ordena alrededor de ese botón."],
+        ["Aprueba la estructura antes del diseño.","Pide primero la lista de secciones. Cuando esté bien, pide el diseño."]
+      ],
+      fields:[["negocio","Negocio","Cafetería Aroma"],["cliente","Cliente ideal","oficinistas de la zona"],["accion","Acción principal","reservar mesa por WhatsApp"],["r1","Del sitio 1 toma","la tipografía"],["r2","Del sitio 2 toma","la paleta de color"],["r3","Del sitio 3 toma","el orden de las secciones"],["r4","Del sitio 4 toma","el estilo de los botones"],["r5","Del sitio 5 toma","las animaciones"]],
+      prompt:"Voy a adjuntar cinco sitios como referencia visual (capturas o enlaces). Usa de cada uno únicamente esto:\n- Sitio 1: {r1}\n- Sitio 2: {r2}\n- Sitio 3: {r3}\n- Sitio 4: {r4}\n- Sitio 5: {r5}\n\nNo reutilices sus textos, fotos ni logos; solo el estilo.\n\nConstruye una página nueva para {negocio}. Le habla a {cliente} y todo debe llevar a una única acción: {accion}.\n\nTrabajemos en dos rondas. Primero dame solo la lista de secciones con una línea sobre qué va en cada una. Cuando yo la apruebe, pasas al diseño. Piensa primero en cómo se ve en celular.",
+      pro:["La revisé en celular antes que en computadora","No queda ningún texto de relleno: todo es del cliente","Cada botón lleva a donde debe","El texto se lee bien sobre los fondos","Carga rápido"],
+      money:[["Oferta","una landing o el rediseño de un sitio existente. Se cobra por proyecto, no por hora."],["Recurrente","mantenimiento mensual: cambios de texto, promociones y secciones nuevas."],["Cómo cerrar","arma un demo con la marca del prospecto antes de cotizar. Ver su propio negocio convence más que una propuesta escrita."]]
+    },
+    {
+      short:"Producto 3D", title:"Página de producto interactiva en 3D",
+      what:"Una página donde el producto se puede girar, cambia de color y actualiza el precio con cada clic.",
+      sells:"Página interactiva para el producto estrella", client:"Marcas con tienda online",
+      demo:true,
+      steps:[
+        ["Reúne el material.","Fotos del producto desde varios ángulos (o el modelo 3D si existe), los colores disponibles y el precio de cada uno."],
+        ["Haz una tabla de variantes.","Nombre, color y precio. El precio en pantalla debe salir siempre de esa tabla y de ningún otro lado."],
+        ["Pide una interacción a la vez.","Primero el giro, luego los colores, luego el precio y al final el botón de compra."],
+        ["Prueba cada variante.","El fallo típico es que el precio mostrado no corresponda al color elegido."]
+      ],
+      fields:[["producto","Producto","termo de acero 500 ml"],["variantes","Colores y precios","Negro $32, Terracota $29, Verde $35"],["link","Enlace de compra","https://mitienda.com/termo"]],
+      prompt:"Construye una página de producto interactiva para {producto}.\n\nVariantes (esta lista es la única fuente de colores y precios):\n{variantes}\n\nQué debe hacer:\n1. El producto se gira arrastrando con el mouse o con el dedo.\n2. Al tocar un color, el producto cambia y el precio se actualiza en el mismo instante.\n3. Un botón de compra que abre {link}.\n\nEstilo: fondo neutro, un solo color de acento, nada que compita con el producto. Optimiza las imágenes para que cargue rápido en celular.\n\nAvancemos por partes: empieza solo por el giro y espera mi visto bueno antes de agregar los colores.",
+      pro:["Fondo limpio y un solo color de acento","Las imágenes están optimizadas y la página pesa poco","Comprobé cada color con su precio, uno por uno","El giro funciona con el dedo en celular","El botón de compra abre el enlace correcto"],
+      money:[["Oferta","la página interactiva del producto estrella, con un paquete opcional para más productos."],["Cliente","marcas con tienda online y emprendedores con un producto principal."],["Cómo cerrar","monta el demo con su producto y midan juntos si mejora la conversión. No prometas porcentajes."]]
+    },
+    {
+      short:"Reels", title:"Edición automática de reels",
+      what:"Fable no es un editor de video: escribe y ejecuta el código que edita por ti (en Claude Code, con herramientas como ffmpeg o Remotion). Recorta silencios palabra por palabra y agrega subtítulos y gráficos de apoyo.",
+      sells:"Paquete mensual de videos editados", client:"Creadores y negocios que publican seguido",
+      steps:[
+        ["Parte de buen audio y un guion claro.","Ninguna edición automática salva un audio malo."],
+        ["Define tu estilo una sola vez.","Ritmo de cortes, tipo de gráficos, subtítulos, colores y tipografía. Guárdalo como instrucciones que reutilizas en cada video."],
+        ["Ajusta cuántos gráficos pones.","Uno cada dos segundos funciona en algunos temas y cansa en otros. Pide una versión cargada y otra limpia, y compara cuál retiene más."],
+        ["Revisa el gancho a mano.","Los primeros segundos deciden si el video se ve o se salta."]
+      ],
+      fields:[["subs","Subtítulos (color y tipografía)","blancos con resaltado terracota, tipografía Anton"],["cada","Un gráfico cada","2 segundos"],["estilo","Estilo de referencia","limpio y rápido, como el video que adjunto"]],
+      prompt:"Te paso un video grabado en vertical y quiero que lo edites para Reels escribiendo y ejecutando el código necesario.\n\n1. Transcribe el audio con marcas de tiempo por palabra.\n2. Quita silencios y muletillas, cortando justo donde empieza y termina cada palabra para que no se note el salto.\n3. Agrega subtítulos: {subs}.\n4. Inserta un gráfico, icono o texto de apoyo cada {cada}, siempre relacionado con lo que se dice en ese momento.\n5. Exporta en 9:16.\n\nEstilo de referencia: {estilo}.\n\nAntes de renderizar, muéstrame la lista de cortes y de gráficos con sus tiempos para que la apruebe.",
+      pro:["Mismo estilo que los demás videos de este cliente","Cada gráfico coincide con lo que se dice en ese segundo","Revisé a mano los primeros 3 segundos","Está en vertical 9:16, listo para Reels, TikTok y Shorts","Los derechos de la música y del material están confirmados"],
+      money:[["Oferta","paquete mensual de reels editados, cobrado por cantidad de videos. Es ingreso recurrente."],["Cliente","creadores, coaches y negocios locales que publican seguido y no tienen editor."],["Escala","tu flujo documentado es el producto: atiendes más clientes sin multiplicar tus horas."]]
+    },
+    {
+      short:"Tu 2027", title:"Planificador «Tu 2027»",
+      what:"Fable te entrevista y con tus respuestas planea tu año como si fuera el lanzamiento de un producto.",
+      sells:"Sesión de planeación y plan anual entregado", client:"Emprendedores y profesionales",
+      steps:[
+        ["Responde con datos, no con deseos.","Horas disponibles, ingresos actuales y compromisos fijos. Un plan hecho de intenciones no aguanta febrero."],
+        ["Pide la estructura de un lanzamiento.","Un objetivo central, hitos por trimestre, métricas de avance, riesgos y una revisión semanal."],
+        ["Pídele que te lleve la contraria.","Qué metas chocan entre sí y cuáles no caben en tu tiempo. Con menos metas se cumple más."],
+        ["Guárdalo y revísalo cada mes.","Vuelve al documento con Claude y ajusta lo que cambió."]
+      ],
+      fields:[["quien","A qué te dedicas","consultora de marketing independiente"],["horas","Horas libres por semana","10"],["meta","Lo que más quieres lograr en 2027","pasar de 3 a 8 clientes fijos"]],
+      prompt:"Quiero planear mi 2027 igual que se planea el lanzamiento de un producto.\n\nPunto de partida: soy {quien}, tengo unas {horas} horas libres por semana y lo que más quiero lograr es {meta}.\n\nHazme una entrevista, una pregunta por turno, sobre objetivos, tiempo real disponible, ingresos, hábitos y compromisos fijos. Si respondo con algo vago, pídeme el número.\n\nCuando tengas suficiente, entrégame:\n- Un objetivo central para el año\n- Un hito por trimestre\n- Las métricas con las que sabré si avanzo\n- Los riesgos principales\n- Una rutina de revisión semanal de 15 minutos\n\nDime sin rodeos qué metas se contradicen y cuáles no caben en mi tiempo.",
+      pro:["El plan está ordenado por trimestres, no es un texto largo","Lo entrego en PDF o Notion","Avisé al cliente qué datos personales recibo y solo los uso para su plan","Tengo mi propio plan como ejemplo para mostrar"],
+      money:[["Oferta","sesión 1:1 de planeación más el documento «Tu 2027» entregado."],["Versión grupal","taller en vivo, o un producto digital con la plantilla y los prompts."],["Momento","se vende mejor entre noviembre y enero. Esa ventana está abierta ahora."]]
+    },
+    {
+      short:"Manual", title:"Manual de trabajo: Fable planifica y revisa",
+      what:"Escribes las reglas de tu trabajo en un manual. Fable 5.2 planifica y revisa contra ese manual; un modelo más ligero y barato hace las tareas repetitivas. Así pagas el modelo más capaz solo donde más aporta.",
+      sells:"Sistema de planificación y revisión con IA", client:"Agencias, freelancers y equipos pequeños",
+      roles:true,
+      steps:[
+        ["Escribe el manual.","Objetivo del trabajo, estándar de calidad, formato de entrega, errores que ya cometiste y ejemplos de un resultado bueno y uno malo."],
+        ["Reparte los roles.","Fable 5.2 planifica y revisa. Un modelo ligero, como Haiku, ejecuta lo repetitivo."],
+        ["Convierte la revisión en checklist.","Así la revisión devuelve fallas concretas y no opiniones."],
+        ["Actualiza el manual con cada error nuevo.","El sistema mejora sin que gastes más."]
+      ],
+      fields:[["trabajo","Tipo de trabajo","redacción de correos de venta para clínicas dentales"]],
+      prompt:"Voy a apoyarme en IA para este trabajo: {trabajo}.\n\nAyúdame a escribir un manual de trabajo. Entrevístame, una pregunta por turno, hasta cubrir:\n- El objetivo del trabajo\n- Qué cuenta como buena calidad\n- El formato exacto de entrega\n- Los errores que ya he cometido\n- Un ejemplo de resultado bueno y uno malo\n\nCon eso redacta el manual (versión 1, corto y con reglas concretas) y un checklist de revisión.\n\nDesde ahí, tu papel será doble: planificar cada tarea antes de ejecutarla y revisar cada resultado punto por punto contra el checklist, señalando fallas concretas en lugar de opiniones.",
+      pro:["El manual es corto: reglas concretas con ejemplos","Está versionado (v1, v2) y anoté qué cambió","Medí 5 tareas reales: costo y calidad antes y después","La revisión devuelve fallas concretas, no opiniones"],
+      money:[["Oferta","construir el manual y el flujo de trabajo con IA para el negocio de un cliente. Cobras la implementación y luego el mantenimiento."],["Cliente","agencias, freelancers y equipos pequeños que ya usan IA a diario y quieren consistencia y menos gasto."],["Producto","manuales base por nicho (ventas, contenido, atención al cliente) que reutilizas entre clientes."]]
+    }
+  ];
+
+  /* ---------- Quiz ---------- */
+  var QUIZ = [
+    ["Diseño o armo páginas web",0,"Ya conoces el oficio: Fable te acelera la parte de construcción y tú pones el ojo."],
+    ["Tengo o trabajo con una tienda online",1,"Conoces el producto y al comprador; la página interactiva es el paso natural."],
+    ["Grabo o edito video para redes",2,"Sabes qué retiene a la gente; automatiza lo mecánico y cobra por paquete."],
+    ["Doy asesorías, coaching o mentorías",3,"Ya tienes las conversaciones; ahora las conviertes en un plan entregable."],
+    ["Uso IA a diario en mi trabajo o equipo",4,"Ya sabes dónde falla la IA; documentarlo es justo lo que otros te pagarían."],
+    ["Estoy empezando desde cero",3,"Es el único que no pide conocimientos técnicos, y puedes practicarlo hoy con tu propio 2027."]
+  ];
+  var opts = $("opts"), reco = $("reco");
+  QUIZ.forEach(function(q, i){
+    var b = document.createElement("button");
+    b.className = "opt"; b.type = "button"; b.textContent = q[0];
+    b.onclick = function(){
+      [].forEach.call(opts.children, function(c){ c.classList.remove("on"); });
+      b.classList.add("on");
+      var u = USES[q[1]];
+      reco.innerHTML = "<p><b>Empieza por el uso 0" + (q[1]+1) + ": " + esc(u.title) + ".</b> " + esc(q[2]) + "</p><button class='btn btn-primary btn-sm' type='button' id='go'>Ir a ese uso</button>";
+      reco.classList.add("show");
+      $("go").onclick = function(){ show(q[1]); $("usos").scrollIntoView(); };
+    };
+    opts.appendChild(b);
+  });
+
+  /* ---------- Usos ---------- */
+  var tabs = $("tabs"), panel = $("panel");
+  USES.forEach(function(u, i){
+    var b = document.createElement("button");
+    b.className = "tab"; b.type = "button"; b.setAttribute("role","tab");
+    b.innerHTML = "<b>0" + (i+1) + "</b><span>" + esc(u.short) + "</span>";
+    b.setAttribute("aria-label", "Uso " + (i+1) + ": " + u.title);
+    b.onclick = function(){ show(i); };
+    tabs.appendChild(b);
+  });
+
+  var VARIANTS = [["Terracota","#C4613F",29],["Negro","#26231F",32],["Verde","#2F7A4F",35]];
+
+  function show(i){
+    var u = USES[i];
+    store("fable-tab", String(i));
+    [].forEach.call(tabs.children, function(t, k){ t.classList.toggle("on", k === i); t.setAttribute("aria-selected", k === i); });
+
+    var h = "<div class='use'><div class='use-head'><div class='ch-n'>Uso 0" + (i+1) + "</div><h3>" + esc(u.title) + "</h3><p>" + esc(u.what) + "</p>" +
+      "<span class='pill'>Vendes: " + esc(u.sells) + "</span> <span class='pill'>Cliente: " + esc(u.client) + "</span></div>";
+
+    h += "<div class='card'><h4>Cómo sacarle provecho</h4><ol class='steps'>" + u.steps.map(function(s){ return "<li><span><b>" + esc(s[0]) + "</b> " + esc(s[1]) + "</span></li>"; }).join("") + "</ol></div>";
+
+    if (u.demo){
+      h += "<div class='card block'><h4>Pruébalo: así se siente para el comprador</h4><div class='demo'><div class='stage' id='stage' aria-label='Producto de ejemplo. Arrastra para girarlo.'><div class='cube' id='cube'><i>TU MARCA</i><i></i><i></i><i></i><i></i><i></i></div></div>" +
+        "<div><small>Arrastra la caja para girarla y elige un color.</small><div class='sws' id='sws'></div><div class='price' id='price'></div><small id='vname'></small><div class='tip' style='margin-top:14px'><span>Color y precio salen de <b>una sola tabla</b>. Por eso no se pueden descuadrar.</span></div></div></div></div>";
+    }
+    if (u.roles){
+      h += "<div class='card block'><h4>Quién hace qué</h4><div class='roles'><div class='role hi'><b>Fable 5.2 planifica</b>Lee el manual y divide el trabajo en tareas claras.</div><div class='arrow'>→</div><div class='role'><b>Modelo ligero ejecuta</b>Hace las tareas repetitivas a menor costo.</div><div class='arrow'>→</div><div class='role hi'><b>Fable 5.2 revisa</b>Compara cada resultado con el checklist y marca las fallas.</div></div></div>";
+    }
+
+    h += "<div class='card block'><h4>Arma tu prompt</h4><div class='fields'>" + u.fields.map(function(f){
+      return "<div class='field'><label for='f-" + f[0] + "'>" + esc(f[1]) + "</label><input id='f-" + f[0] + "' data-k='" + f[0] + "' placeholder='" + esc(f[2]) + "' autocomplete='off'></div>"; }).join("") +
+      "</div><div class='prompt' id='prompt'></div><div class='prompt-bar'><small>Lo que va entre corchetes aún falta por completar.</small><button class='btn btn-primary btn-sm' type='button' id='copy'>Copiar prompt</button></div></div>";
+
+    h += "<div class='grid2 block'><div class='card'><h4>Antes de entregar</h4>" + u.pro.map(function(p, k){
+      return "<label class='task'><input type='checkbox' data-c='" + i + "-" + k + "'><span>" + esc(p) + "</span></label>"; }).join("") +
+      "</div><div class='card'><h4>Cómo cobrarlo</h4><ul class='money'>" + u.money.map(function(m){ return "<li><span><b>" + esc(m[0]) + ":</b> " + esc(m[1]) + "</span></li>"; }).join("") + "</ul></div></div></div>";
+
+    panel.innerHTML = h;
+
+    /* prompt en vivo */
+    var inputs = panel.querySelectorAll(".fields input");
+    function build(html){
+      return u.prompt.replace(/\{(\w+)\}/g, function(_, k){
+        var el = $("f-" + k), v = el.value.trim(), label = "";
+        u.fields.forEach(function(f){ if (f[0] === k) label = f[1].toLowerCase(); });
+        if (!html) return v || "[" + label + "]";
+        return v ? "<mark class='f'>" + esc(v) + "</mark>" : "<mark>[" + esc(label) + "]</mark>";
+      });
+    }
+    function render(){ $("prompt").innerHTML = build(true); }
+    [].forEach.call(inputs, function(el){
+      el.value = store("fable-f-" + i + "-" + el.dataset.k) || "";
+      el.oninput = function(){ store("fable-f-" + i + "-" + el.dataset.k, el.value); render(); };
+    });
+    render();
+    $("copy").onclick = function(){ copy(build(false)); };
+
+    /* checklist */
+    [].forEach.call(panel.querySelectorAll(".task input"), function(c){
+      c.checked = store("fable-c-" + c.dataset.c) === "1";
+      c.onchange = function(){ store("fable-c-" + c.dataset.c, c.checked ? "1" : "0"); };
+    });
+
+    if (u.demo) demo();
+  }
+
+  function demo(){
+    var cube = $("cube"), stage = $("stage"), sws = $("sws"), rx = -14, ry = 32, drag = null;
+    function pick(k){
+      var v = VARIANTS[k];
+      cube.style.setProperty("--c", v[1]);
+      $("price").textContent = "$" + v[2];
+      $("vname").textContent = "Color " + v[0].toLowerCase() + " · precio de ejemplo";
+      [].forEach.call(sws.children, function(s, j){ s.classList.toggle("on", j === k); s.setAttribute("aria-pressed", j === k); });
+    }
+    VARIANTS.forEach(function(v, k){
+      var s = document.createElement("button");
+      s.className = "sw"; s.type = "button"; s.style.background = v[1]; s.setAttribute("aria-label", v[0] + ", $" + v[2]);
+      s.onclick = function(){ pick(k); };
+      sws.appendChild(s);
+    });
+    pick(0);
+    stage.onpointerdown = function(e){ drag = [e.clientX, e.clientY]; stage.setPointerCapture(e.pointerId); };
+    stage.onpointermove = function(e){
+      if (!drag) return;
+      ry += (e.clientX - drag[0]) * .6; rx = Math.max(-60, Math.min(60, rx - (e.clientY - drag[1]) * .4));
+      drag = [e.clientX, e.clientY];
+      cube.style.transform = "rotateX(" + rx + "deg) rotateY(" + ry + "deg)";
+    };
+    stage.onpointerup = stage.onpointercancel = function(){ drag = null; };
+  }
+
+  var start = parseInt(store("fable-tab"), 10);
+  show(start >= 0 && start < USES.length ? start : 0);
+
+  /* ---------- Calculadora ---------- */
+  function calc(){
+    function n(id){ var v = parseFloat($(id).value); return v > 0 ? v : 0; }
+    var p = n("k1") * n("k2"), r = n("k3") * n("k4");
+    function f(x){ return "$" + Math.round(x).toLocaleString("es"); }
+    $("total").textContent = f(p + r);
+    $("split").textContent = f(p) + " por proyectos + " + f(r) + " recurrente";
+  }
+  ["k1","k2","k3","k4"].forEach(function(id){ $(id).oninput = calc; });
+  calc();
+})();
+</script>
+</body>
+</html>
