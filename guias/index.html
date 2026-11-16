@@ -149,6 +149,10 @@ footer .soc a{color:#F4F2ED;font-family:var(--cond);font-weight:500;letter-spaci
    - url: la página de la guía (las nuevas van en /guias/nombre)
    ===================================================================== */
 var GUIAS = [
+  { semana:"2026-11-16", emoji:"▶️", tema:"YouTube", palabra:"YOUTUBE",
+    titulo:"Crea tu canal de YouTube con Claude",
+    texto:"Cómo usar Claude para planear, escribir y hacer crecer tu canal de YouTube.",
+    url:"https://claude-youtube-teal.vercel.app" },
   { semana:"2026-11-16", emoji:"🤖", tema:"IA", palabra:"FABLE",
     titulo:"5 formas de usar Fable 5.2 que se pueden cobrar",
     texto:"5 servicios que puedes ofrecer con Fable 5.2: pasos, prompts que se arman solos, listas de revisión y cómo cobrarlos.",
@@ -200,7 +204,8 @@ var GUIAS = [
       return '<section class="week"><div class="week-h"><h2>' + (s === ultima ? "Esta semana" : "Semana del " + fecha(s)) + '</h2><span>' + porSemana[s].length + (porSemana[s].length === 1 ? " guía" : " guías") + '</span></div><div class="grid">' +
         porSemana[s].map(function(g){
           var soon = !g.url;
-          return '<a class="g' + (soon ? " soon" : "") + '" href="' + esc(g.url || "#") + '">' +
+          var ext = /^https?:/.test(g.url || "");
+          return '<a class="g' + (soon ? " soon" : "") + '" href="' + esc(g.url || "#") + '"' + (ext ? ' target="_blank" rel="noopener"' : "") + '>' +
             '<div class="top"><span class="em">' + esc(g.emoji || "📘") + '</span>' + (s === ultima ? '<span class="new">Nueva</span>' : "") + '</div>' +
             '<h3>' + esc(g.titulo) + '</h3><p>' + esc(g.texto) + '</p>' +
             '<div class="foot"><span class="kw">Palabra<b>' + esc(g.palabra) + '</b></span><span class="go">' + (soon ? "Muy pronto" : "Abrir guía →") + '</span></div></a>';
