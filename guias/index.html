@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guías gratuitas · @carlosbarcoc</title>
+<meta name="description" content="Todas las guías gratuitas de mis reels en un solo lugar: busca por la palabra clave y consúltalas cuando quieras.">
+<meta property="og:title" content="Guías gratuitas de @carlosbarcoc">
+<meta property="og:description" content="Busca la palabra clave del reel y abre tu guía.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://carlosbarco-web.vercel.app/img/carlos.jpg">
+<meta name="theme-color" content="#F4F2ED">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@300;400;500;600&family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23C4613F'/%3E%3Ctext x='32' y='44' font-family='Arial' font-weight='900' font-size='34' text-anchor='middle' fill='white'%3EIA%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --paper:#F4F2ED; --white:#FFFFFF; --sand:#E9E1D4; --beige:#DCCFBE;
+  --ink:#1C1A17; --gray:#5E5952; --accent:#C4613F; --accent-d:#A94F31; --tint:#F5E6DD; --sage:#2F7A4F;
+  --head:Anton,Impact,"Arial Narrow",sans-serif; --cond:Oswald,"Arial Narrow",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font-family:Figtree,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1000px;margin:0 auto;padding:0 20px}
+
+header{position:sticky;top:0;z-index:50;background:rgba(244,242,237,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--beige)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:64px;gap:12px}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--cond);font-weight:600;font-size:1.1rem;letter-spacing:.05em;white-space:nowrap}
+.logo i{width:32px;height:32px;border-radius:9px;background:var(--accent);color:#fff;display:grid;place-items:center;font-style:normal;font-family:var(--head);font-size:.9rem}
+.back{font-family:var(--cond);font-weight:500;letter-spacing:.08em;text-transform:uppercase;font-size:.85rem;color:var(--gray);padding:8px 14px;border:2px solid var(--beige);border-radius:10px}
+.back:hover{border-color:var(--ink);color:var(--ink)}
+
+.cover{padding:60px 0 30px;text-align:center;position:relative}
+.cover::before{content:"";position:absolute;width:min(520px,90vw);height:min(520px,90vw);left:50%;top:-60px;transform:translateX(-50%);border-radius:50%;background:var(--sand);opacity:.6;z-index:-1}
+.tag{display:inline-block;padding:7px 14px;border-radius:999px;border:1.5px solid var(--beige);background:var(--white);color:var(--gray);font-family:var(--cond);font-weight:500;letter-spacing:.14em;text-transform:uppercase;font-size:.8rem;margin-bottom:20px}
+h1{font-family:var(--head);font-weight:400;text-transform:uppercase;font-size:clamp(2.6rem,7vw,4.4rem);line-height:1.02;margin-bottom:16px}
+h1 span{color:var(--accent)}
+.cover p{color:var(--gray);font-family:var(--cond);font-weight:300;font-size:1.3rem;line-height:1.45;max-width:600px;margin:0 auto}
+
+.search{max-width:620px;margin:32px auto 0;position:relative}
+.search svg{position:absolute;left:18px;top:31px;transform:translateY(-50%);width:22px;height:22px;color:var(--gray)}
+.search input{width:100%;padding:18px 20px 18px 54px;border-radius:14px;border:2px solid var(--beige);background:var(--white);font:inherit;font-size:1.08rem;color:var(--ink);box-shadow:0 6px 0 var(--sand)}
+.search input:focus{outline:none;border-color:var(--accent)}
+.search small{display:block;margin-top:14px;color:var(--gray);font-size:.9rem}
+
+.chips{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:26px 0 8px}
+.chip{padding:8px 15px;border-radius:10px;border:2px solid var(--beige);background:var(--white);color:var(--gray);font-family:var(--cond);font-weight:500;letter-spacing:.06em;text-transform:uppercase;font-size:.85rem;cursor:pointer}
+.chip.on{background:var(--ink);border-color:var(--ink);color:#F4F2ED}
+
+.week{margin-top:46px}
+.week-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;border-bottom:2px solid var(--beige);padding-bottom:10px;margin-bottom:18px}
+.week-h h2{font-family:var(--head);font-weight:400;text-transform:uppercase;font-size:1.9rem;line-height:1.1}
+.week-h span{font-family:var(--cond);color:var(--accent);letter-spacing:.14em;text-transform:uppercase;font-size:.82rem;font-weight:500}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px}
+
+.g{position:relative;display:flex;flex-direction:column;background:var(--white);border:2px solid var(--beige);border-radius:16px;padding:22px;box-shadow:0 6px 0 var(--sand);transition:transform .2s,border-color .2s,box-shadow .2s}
+.g:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 8px 0 var(--tint)}
+.g .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.g .em{width:50px;height:50px;border-radius:12px;background:var(--tint);display:grid;place-items:center;font-size:1.5rem}
+.g .new{font-family:var(--cond);font-weight:600;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;background:var(--accent);color:#fff;padding:4px 10px;border-radius:6px}
+.g h3{font-family:var(--cond);font-weight:600;font-size:1.3rem;line-height:1.25;margin-bottom:6px}
+.g p{color:var(--gray);font-size:.95rem;flex:1;margin-bottom:18px}
+.g .foot{display:flex;justify-content:space-between;align-items:center;gap:10px;border-top:1.5px solid var(--sand);padding-top:14px}
+.kw{font-family:var(--cond);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gray)}
+.kw b{display:inline-block;margin-left:4px;background:var(--ink);color:#F4F2ED;padding:3px 9px;border-radius:6px;font-weight:600;letter-spacing:.08em}
+.go{font-family:var(--cond);font-weight:600;letter-spacing:.08em;text-transform:uppercase;font-size:.85rem;color:var(--accent);white-space:nowrap}
+.g.soon{opacity:.6;pointer-events:none}
+
+.empty{display:none;text-align:center;padding:50px 20px;color:var(--gray);font-family:var(--cond);font-size:1.2rem}
+.empty.show{display:block}
+
+.cta{margin:70px 0 0;background:var(--ink);color:#F4F2ED;border-radius:22px;padding:44px 26px;text-align:center;box-shadow:0 10px 0 var(--accent)}
+.cta h2{font-family:var(--head);font-weight:400;text-transform:uppercase;font-size:clamp(1.9rem,4.5vw,2.7rem);line-height:1.08;margin-bottom:12px}
+.cta p{color:#BDB5AA;font-family:var(--cond);font-weight:300;font-size:1.2rem;max-width:560px;margin:0 auto 24px}
+.row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 22px;border-radius:12px;font-family:var(--cond);font-weight:600;font-size:.98rem;letter-spacing:.06em;text-transform:uppercase;transition:transform .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-wa{background:var(--sage);color:#fff;box-shadow:0 5px 0 #235E3C}
+.btn-yt{background:#F4F2ED;color:var(--ink);box-shadow:0 5px 0 #8F877C}
+.btn-primary{background:var(--accent);color:#fff;box-shadow:0 5px 0 #6E331F}
+
+footer{padding:36px 0 100px;color:#BDB5AA;font-size:.86rem;background:var(--ink);margin-top:60px}
+footer .soc{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:12px}
+footer .soc a{color:#F4F2ED;font-family:var(--cond);font-weight:500;letter-spacing:.08em;text-transform:uppercase;font-size:.85rem}
+.wa-float{position:fixed;right:18px;bottom:18px;z-index:60;width:58px;height:58px;border-radius:50%;background:var(--sage);color:#fff;display:grid;place-items:center;box-shadow:0 12px 28px -10px rgba(28,26,23,.55)}
+.wa-float svg{width:28px;height:28px}
+@media (max-width:600px){.btn{width:100%}.cover{padding-top:44px}.back span{display:none}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="/" class="logo"><i>IA</i>@carlosbarcoc</a>
+    <a class="back" href="/">← <span>Volver al </span>inicio</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="cover">
+    <div class="tag">📚 Biblioteca gratuita</div>
+    <h1>Mis guías <span>gratis</span></h1>
+    <p>Aquí están todas las guías de mis reels. ¿Comentaste una palabra clave? Búscala y abre tu guía cuando la necesites.</p>
+    <div class="search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <input id="q" type="search" placeholder="Escribe la palabra clave del reel…" autocomplete="off" aria-label="Buscar guía por palabra clave">
+      <small>Ejemplo: escribe la palabra que comentaste en el reel.</small>
+    </div>
+    <div class="chips" id="chips" role="group" aria-label="Filtrar por tema"></div>
+  </section>
+
+  <div id="list"></div>
+  <div class="empty" id="empty">No encontré esa guía 🤔<br>Revisa la palabra o escríbeme por WhatsApp y te la envío.</div>
+
+  <section class="cta">
+    <h2>¿Quieres más guías como estas?</h2>
+    <p>Cada semana publico nuevas. Únete a la comunidad para recibirlas primero.</p>
+    <div class="row">
+      <a class="btn btn-wa" href="https://chat.whatsapp.com/HHZ62Td03kJEUB9937SoiW" target="_blank" rel="noopener">Unirme a la comunidad</a>
+      <a class="btn btn-yt" href="https://youtube.com/@carlosbarco177?si=cI-s8oZaHFlION0J" target="_blank" rel="noopener">Ver mi canal de YouTube</a>
+      <a class="btn btn-primary" href="https://go.hotmart.com/V106557229Y?ap=39fb" target="_blank" rel="noopener">Clase gratis Franquicia IA</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="soc">
+      <a href="/">Inicio</a>
+      <a href="https://www.instagram.com/carlosbarcoc/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://youtube.com/@carlosbarco177?si=cI-s8oZaHFlION0J" target="_blank" rel="noopener">YouTube</a>
+      <a href="https://chat.whatsapp.com/HHZ62Td03kJEUB9937SoiW" target="_blank" rel="noopener">Comunidad</a>
+    </div>
+    <p>© <span id="year"></span> @carlosbarcoc · Guías gratuitas. Los resultados dependen de la constancia de cada persona.</p>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.link/25yiii" target="_blank" rel="noopener" aria-label="Escríbeme por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1s-.5-.1-.7.1-.8 1-.9 1.2-.3.2-.6.1a8.2 8.2 0 0 1-4.1-3.6c-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6a1.2 1.2 0 0 0-.8.4 3.5 3.5 0 0 0-1.1 2.6 6 6 0 0 0 1.3 3.2 13.9 13.9 0 0 0 5.3 4.7c2 .8 2.7.9 3.7.8a3.1 3.1 0 0 0 2-1.4 2.5 2.5 0 0 0 .2-1.4c-.1-.2-.3-.3-.6-.4zM12 21.8a9.9 9.9 0 0 1-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.8 9.8 0 1 1 12 21.8zm8.4-18.2A11.8 11.8 0 0 0 1.8 17.8L.1 24l6.4-1.7a11.8 11.8 0 0 0 5.6 1.4A11.8 11.8 0 0 0 20.4 3.6z"/></svg>
+</a>
+
+<script>
+/* =====================================================================
+   LISTA DE GUÍAS. Para añadir una guía nueva, copia un bloque { ... }.
+   - semana: el lunes de la semana del reel (AAAA-MM-DD)
+   - palabra: la palabra clave que la gente comenta en el reel
+   - url: la página de la guía (las nuevas van en /guias/nombre)
+   ===================================================================== */
+var GUIAS = [
+  { semana:"2026-11-09", emoji:"📈", tema:"Instagram", palabra:"GUÍA",
+    titulo:"Crece en Instagram en 2026",
+    texto:"Estrategia, 10 formatos que funcionan, generador de ganchos y plan de 30 días.",
+    url:"/guia" }
+];
+
+(function(){
+  document.getElementById("year").textContent = new Date().getFullYear();
+  var MESES = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+  function norm(s){ return String(s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").trim(); }
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+  function fecha(iso){ var d = new Date(iso + "T12:00:00"); return d.getDate() + " de " + MESES[d.getMonth()] + " de " + d.getFullYear(); }
+
+  var lista = GUIAS.slice().sort(function(a, b){ return b.semana.localeCompare(a.semana); });
+  var ultima = lista.length ? lista[0].semana : "";
+  var temas = ["Todas"].concat(lista.map(function(g){ return g.tema; }).filter(function(t, i, a){ return t && a.indexOf(t) === i; }));
+  var tema = "Todas", q = "";
+
+  var chips = document.getElementById("chips");
+  chips.innerHTML = temas.length > 2 ? temas.map(function(t, i){ return '<button class="chip' + (i ? "" : " on") + '" data-t="' + esc(t) + '">' + esc(t) + '</button>'; }).join("") : "";
+  chips.addEventListener("click", function(e){
+    var b = e.target.closest(".chip"); if (!b) return;
+    tema = b.dataset.t;
+    chips.querySelectorAll(".chip").forEach(function(c){ c.classList.toggle("on", c === b); });
+    render();
+  });
+
+  var input = document.getElementById("q");
+  var params = new URLSearchParams(location.search);
+  if (params.get("p")) input.value = params.get("p");
+  input.addEventListener("input", function(){ render(); });
+
+  function render(){
+    q = norm(input.value);
+    var vis = lista.filter(function(g){
+      if (tema !== "Todas" && g.tema !== tema) return false;
+      if (!q) return true;
+      return [g.palabra, g.titulo, g.texto, g.tema].some(function(x){ return norm(x).indexOf(q) > -1; });
+    });
+    // Si la palabra coincide exacto con una guía, se resalta primero
+    vis.sort(function(a, b){ return (norm(b.palabra) === q) - (norm(a.palabra) === q); });
+    var porSemana = {};
+    vis.forEach(function(g){ (porSemana[g.semana] = porSemana[g.semana] || []).push(g); });
+    var html = Object.keys(porSemana).sort().reverse().map(function(s){
+      return '<section class="week"><div class="week-h"><h2>' + (s === ultima ? "Esta semana" : "Semana del " + fecha(s)) + '</h2><span>' + porSemana[s].length + (porSemana[s].length === 1 ? " guía" : " guías") + '</span></div><div class="grid">' +
+        porSemana[s].map(function(g){
+          var soon = !g.url;
+          return '<a class="g' + (soon ? " soon" : "") + '" href="' + esc(g.url || "#") + '">' +
+            '<div class="top"><span class="em">' + esc(g.emoji || "📘") + '</span>' + (s === ultima ? '<span class="new">Nueva</span>' : "") + '</div>' +
+            '<h3>' + esc(g.titulo) + '</h3><p>' + esc(g.texto) + '</p>' +
+            '<div class="foot"><span class="kw">Palabra<b>' + esc(g.palabra) + '</b></span><span class="go">' + (soon ? "Muy pronto" : "Abrir guía →") + '</span></div></a>';
+        }).join("") + '</div></section>';
+    }).join("");
+    document.getElementById("list").innerHTML = html;
+    document.getElementById("empty").classList.toggle("show", vis.length === 0);
+  }
+  render();
+})();
+</script>
+</body>
+</html>
