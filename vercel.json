@@ -26,6 +26,16 @@
       "source": "/Guias",
       "destination": "/guias",
       "permanent": true
+    },
+    {
+      "source": "/GTA",
+      "destination": "/gta",
+      "permanent": true
+    },
+    {
+      "source": "/Gta",
+      "destination": "/gta",
+      "permanent": true
     }
   ]
 }

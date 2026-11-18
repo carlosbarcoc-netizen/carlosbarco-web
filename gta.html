@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prompt maestro: videos estilo GTA VI con Claude + Higgsfield · @carlosbarcoc</title>
+<meta name="description" content="Página interactiva: arma tu prompt maestro para crear videos estilo GTA VI con Claude y Higgsfield. Elige escenas, personaje y estilo, y copia los prompts listos.">
+<meta property="og:title" content="Prompt maestro: videos estilo GTA VI con Claude + Higgsfield">
+<meta property="og:description" content="Arma tu prompt en 1 minuto y cópialo. Gratis.">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://carlosbarco-web.vercel.app/img/carlos.jpg">
+<meta name="theme-color" content="#F4F2ED">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@300;400;500;600&family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23C4613F'/%3E%3Ctext x='32' y='44' font-family='Arial' font-weight='900' font-size='34' text-anchor='middle' fill='white'%3EIA%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --paper:#F4F2ED; --white:#FFFFFF; --sand:#E9E1D4; --beige:#DCCFBE;
+  --ink:#1C1A17; --ink2:#26231F; --gray:#5E5952;
+  --accent:#C4613F; --accent-d:#A94F31; --tint:#F5E6DD; --sage:#2F7A4F;
+  --head:Anton,Impact,"Arial Narrow",sans-serif; --cond:Oswald,"Arial Narrow",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:Figtree,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 24px;border-radius:12px;font-family:var(--cond);font-weight:600;font-size:1rem;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;border:2px solid transparent;transition:transform .2s;text-align:center;line-height:1.2}
+.btn:hover{transform:translateY(-2px)}
+.btn svg{width:19px;height:19px;flex:none}
+.btn-primary{background:var(--accent);color:#fff;box-shadow:0 5px 0 var(--accent-d)}
+.btn-dark{background:var(--ink);color:#F4F2ED;box-shadow:0 5px 0 #000}
+.btn-wa{background:var(--sage);color:#fff;box-shadow:0 5px 0 #235E3C}
+.btn-light{background:#F4F2ED;color:var(--ink);box-shadow:0 5px 0 #8F877C}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--beige)}
+.btn-sm{padding:9px 16px;font-size:.85rem}
+
+header{position:sticky;top:0;z-index:50;background:rgba(244,242,237,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--beige)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:64px;gap:12px}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--cond);font-weight:600;font-size:1.1rem;letter-spacing:.05em;white-space:nowrap}
+.logo i{width:32px;height:32px;border-radius:9px;background:var(--accent);color:#fff;display:grid;place-items:center;font-style:normal;font-family:var(--head);font-size:.9rem}
+
+/* Portada (oscura) */
+.cover{background:var(--ink);color:#F4F2ED;padding:64px 0 56px;text-align:center;position:relative;overflow:hidden}
+.cover::before{content:"";position:absolute;inset:auto -10% -55% -10%;height:80%;background:radial-gradient(ellipse at center,rgba(196,97,63,.45),transparent 65%);pointer-events:none}
+.cover .wrap{position:relative}
+.tag{display:inline-block;padding:7px 14px;border-radius:999px;border:1.5px solid #3A352F;color:#BDB5AA;font-family:var(--cond);font-weight:500;letter-spacing:.14em;text-transform:uppercase;font-size:.8rem;margin-bottom:22px}
+h1{font-family:var(--head);font-weight:400;text-transform:uppercase;font-size:clamp(2.4rem,7vw,4.4rem);line-height:1.02;margin-bottom:20px}
+h1 em{font-style:normal;color:#E58A66}
+.cover p{color:#BDB5AA;font-family:var(--cond);font-weight:300;font-size:1.28rem;line-height:1.45;max-width:640px;margin:0 auto 28px}
+.cover .row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.flow{display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;margin-top:34px;font-family:var(--cond);letter-spacing:.08em;text-transform:uppercase;font-size:.88rem}
+.flow span{padding:8px 14px;border:1.5px solid #3A352F;border-radius:10px;background:var(--ink2)}
+.flow b{color:#E58A66}
+
+/* Secciones */
+.ch{padding:60px 0;border-top:2px solid var(--beige)}
+.ch:first-of-type{border-top:0}
+.ch-n{color:var(--accent);font-family:var(--cond);font-weight:500;letter-spacing:.22em;text-transform:uppercase;font-size:.85rem;margin-bottom:10px}
+h2{font-family:var(--head);font-weight:400;text-transform:uppercase;font-size:clamp(2rem,5vw,3rem);line-height:1.05;margin-bottom:16px}
+h2::after{content:"";display:block;width:90px;height:4px;background:var(--accent);margin-top:16px}
+.intro{color:var(--gray);font-family:var(--cond);font-weight:300;font-size:1.22rem;line-height:1.5;margin-bottom:28px}
+h3{font-family:var(--cond);font-size:1.3rem;font-weight:600;margin-bottom:6px;line-height:1.25}
+.card{background:var(--white);border:2px solid var(--beige);border-radius:16px;padding:24px;box-shadow:0 6px 0 var(--sand)}
+.muted{color:var(--gray)}
+
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;counter-reset:s}
+.steps .card{counter-increment:s;position:relative;padding-top:84px}
+.steps .card::before{content:counter(s);position:absolute;top:16px;left:24px;font-family:var(--head);font-size:3.4rem;line-height:1;color:var(--accent)}
+.steps .card::after{content:"";position:absolute;left:66px;top:26px;width:2px;height:40px;background:var(--beige)}
+.model{display:inline-block;margin-top:10px;font-family:var(--cond);font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;background:var(--ink);color:#F4F2ED;padding:4px 10px;border-radius:6px}
+
+/* Configurador */
+.builder{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.field{margin-bottom:18px}
+.field > label,.field > .lbl{display:block;font-family:var(--cond);font-weight:500;letter-spacing:.1em;text-transform:uppercase;font-size:.82rem;color:var(--gray);margin-bottom:8px}
+.field input[type=text],.field textarea,.field select{background:var(--paper);border:2px solid var(--beige);color:var(--ink);border-radius:10px;padding:12px 14px;font:inherit;font-size:1rem;width:100%}
+.field textarea{resize:vertical;min-height:70px}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--accent)}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opt{padding:8px 13px;border-radius:10px;border:2px solid var(--beige);background:var(--paper);color:var(--gray);font-family:var(--cond);font-weight:500;letter-spacing:.04em;font-size:.92rem;cursor:pointer;transition:all .15s}
+.opt:hover{border-color:var(--ink);color:var(--ink)}
+.opt[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:#F4F2ED}
+.types{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.types .opt{text-align:left;padding:12px 14px;font-size:1rem;line-height:1.25}
+.types .opt small{display:block;font-family:Figtree,sans-serif;font-size:.78rem;letter-spacing:0;opacity:.8;font-weight:500;margin-top:2px}
+.field > label.check{display:flex;gap:10px;align-items:flex-start;cursor:pointer;margin:12px 0 0;font-family:Figtree,sans-serif;font-size:.95rem;letter-spacing:0;text-transform:none;color:var(--ink);font-weight:400}
+.check input{width:20px;height:20px;accent-color:var(--accent);flex:none;margin-top:3px}
+
+.out{position:sticky;top:84px}
+.out-tabs{display:flex;gap:6px;margin-bottom:-2px;position:relative;z-index:1;flex-wrap:wrap}
+.tab{padding:10px 14px;border-radius:10px 10px 0 0;border:2px solid var(--beige);border-bottom:0;background:var(--sand);color:var(--gray);font-family:var(--cond);font-weight:500;letter-spacing:.06em;text-transform:uppercase;font-size:.82rem;cursor:pointer}
+.tab[aria-selected=true]{background:var(--ink);border-color:var(--ink);color:#F4F2ED}
+.prompt{background:var(--ink);color:#EDE7DD;border-radius:0 14px 14px 14px;padding:20px;box-shadow:10px 10px 0 var(--accent)}
+.prompt pre{white-space:pre-wrap;word-wrap:break-word;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.84rem;line-height:1.6;max-height:440px;overflow:auto;padding-right:6px}
+.prompt pre b{color:#E58A66;font-weight:700}
+.prompt-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:16px;padding-top:14px;border-top:1px solid #3A352F;flex-wrap:wrap}
+.prompt-foot small{color:#9C958C;font-size:.82rem}
+.hint{margin-top:14px;font-size:.9rem;color:var(--gray)}
+
+/* Tips */
+.tips{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.tip{display:flex;gap:14px}
+.tip .n{font-family:var(--head);font-size:2rem;line-height:1;color:var(--accent);flex:none;width:34px}
+.bad{background:var(--tint);border-left:4px solid var(--accent);border-radius:12px;padding:18px 20px;margin-top:22px}
+.bad h3{color:var(--accent-d)}
+.bad ul{padding-left:20px;color:var(--ink)}
+
+/* Cierre */
+.next{background:var(--ink);color:#F4F2ED;border-radius:22px;padding:46px 26px;text-align:center;box-shadow:0 10px 0 var(--accent)}
+.next .ch-n{color:#E58A66}
+.next h2::after{margin-left:auto;margin-right:auto}
+.next p{color:#BDB5AA;max-width:580px;margin:0 auto 26px;font-family:var(--cond);font-weight:300;font-size:1.2rem;line-height:1.5}
+.stack{display:flex;flex-direction:column;gap:14px;max-width:460px;margin:0 auto}
+.stack .btn{width:100%}
+
+footer{padding:40px 0 110px;color:#BDB5AA;font-size:.86rem;background:var(--ink);margin-top:56px}
+footer .soc{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:12px}
+footer .soc a{color:#F4F2ED;font-family:var(--cond);font-weight:500;letter-spacing:.08em;text-transform:uppercase;font-size:.85rem}
+footer p+p{margin-top:8px}
+.wa-float{position:fixed;right:18px;bottom:18px;z-index:60;width:58px;height:58px;border-radius:50%;background:var(--sage);color:#fff;display:grid;place-items:center;box-shadow:0 12px 28px -10px rgba(28,26,23,.55)}
+.wa-float svg{width:28px;height:28px}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);opacity:0;background:var(--ink);color:#F4F2ED;font-family:var(--cond);font-weight:500;letter-spacing:.06em;padding:12px 20px;border-radius:12px;z-index:70;transition:opacity .25s,transform .25s;pointer-events:none}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
+@media (max-width:860px){
+  .builder,.tips{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
+  .out{position:static}
+}
+@media (max-width:560px){
+  .types{grid-template-columns:1fr}
+  .cover .btn{width:100%}
+  .nav .btn{display:none}
+  .prompt{box-shadow:6px 6px 0 var(--accent)}
+  .ch{padding:46px 0}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="/" class="logo"><i>IA</i>@carlosbarcoc</a>
+    <a class="btn btn-ghost btn-sm" href="/guias">← Guías de la semana</a>
+  </div>
+</header>
+
+<section class="cover">
+  <div class="wrap">
+    <div class="tag">🎮 Guía gratuita · Prompt maestro</div>
+    <h1>Videos estilo <em>GTA VI</em> con Claude + Higgsfield</h1>
+    <p>Elige tu historia, tu escenario y tu estilo. La página arma el prompt maestro por ti: lo copias, lo pegas en Claude y te devuelve el guion y todos los prompts para Higgsfield.</p>
+    <div class="row">
+      <a class="btn btn-primary" href="#armar">Armar mi prompt</a>
+      <a class="btn btn-light" href="#pasos">Ver cómo funciona</a>
+    </div>
+    <div class="flow" aria-label="Flujo de trabajo"><span>Claude</span><b>→</b><span>Imagen en Higgsfield</span><b>→</b><span>Video en Higgsfield</span><b>→</b><span>Tu reel</span></div>
+  </div>
+</section>
+
+<main class="wrap">
+
+<section class="ch" id="pasos">
+  <div class="ch-n">Paso a paso</div>
+  <h2>Cómo funciona</h2>
+  <p class="intro">Claude hace de director: escribe la historia, divide el video en escenas y te da un prompt de imagen y uno de video para cada escena. Higgsfield los convierte en imágenes y luego en video.</p>
+  <div class="steps">
+    <div class="card"><h3>Pega el prompt en Claude</h3><p class="muted">Arma tu prompt abajo, cópialo y pégalo en Claude. Te devuelve el guion, las escenas y todos los prompts listos.</p><span class="model">Claude</span></div>
+    <div class="card"><h3>Crea las imágenes</h3><p class="muted">En Higgsfield, modo imagen, pega el prompt de cada escena. Sube tu foto como referencia para salir tú en el video.</p><span class="model">Nano Banana Pro</span></div>
+    <div class="card"><h3>Dales movimiento</h3><p class="muted">En modo video, sube cada imagen como primer cuadro y pega su prompt de video. Une los clips en tu editor, con música y textos.</p><span class="model">Cinema Studio Video 3.0</span></div>
+  </div>
+  <p class="hint">💡 Si quieres que tu cara se mantenga idéntica en todas las escenas, prueba también <b>Seedance 2.0</b> en modo video, que trabaja con imágenes de referencia. Los nombres de los modelos son los de Higgsfield en noviembre de 2026 y pueden cambiar.</p>
+</section>
+
+<section class="ch" id="armar">
+  <div class="ch-n">Interactivo</div>
+  <h2>Arma tu prompt maestro</h2>
+  <p class="intro">Toca las opciones. El prompt de la derecha se actualiza solo.</p>
+
+  <div class="builder">
+    <div class="card">
+      <div class="field">
+        <span class="lbl">1. Tipo de video</span>
+        <div class="types opts" data-group="tipo" data-single>
+          <button class="opt" data-v="trailer" aria-pressed="true">🎬 Tráiler cinematográfico<small>Escenas épicas, cámara lenta</small></button>
+          <button class="opt" data-v="carga">🖼️ Pantalla de carga<small>Tú como portada del juego</small></button>
+          <button class="opt" data-v="persecucion">🚓 Persecución<small>Velocidad, sirenas, acción</small></button>
+          <button class="opt" data-v="dia">🌴 Un día en la ciudad<small>Estilo de vida, playa, noche</small></button>
+          <button class="opt" data-v="mision">💼 Misión: negocio digital<small>Ideal para tu nicho</small></button>
+          <button class="opt" data-v="antes">⚡ Antes y después<small>De la vida normal al juego</small></button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="prota">2. Protagonista</label>
+        <input type="text" id="prota" value="un emprendedor latino de 35 años, cabello negro peinado hacia atrás, camisa negra" autocomplete="off">
+        <label class="check"><input type="checkbox" id="foto" checked><span>Usaré <b>mi foto</b> como referencia (salgo yo en el video)</span></label>
+      </div>
+
+      <div class="field">
+        <span class="lbl">3. Escenarios (elige 1 o más)</span>
+        <div class="opts" data-group="esc">
+          <button class="opt" data-v="playa de arena blanca con palmeras y hoteles art déco iluminados con neón" aria-pressed="true">🏖️ Playa de neón</button>
+          <button class="opt" data-v="autopista costera junto al mar con puentes largos">🛣️ Autopista costera</button>
+          <button class="opt" data-v="centro de la ciudad de noche con rascacielos y carteles luminosos" aria-pressed="true">🌃 Centro de noche</button>
+          <button class="opt" data-v="pantanos con manglares, lanchas y niebla">🐊 Pantanos</button>
+          <button class="opt" data-v="puerto con yates y contenedores">⚓ Puerto</button>
+          <button class="opt" data-v="penthouse de lujo con vista al mar y piscina">🏙️ Penthouse</button>
+          <button class="opt" data-v="gasolinera retro de carretera">⛽ Gasolinera retro</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <span class="lbl">4. Hora y ambiente</span>
+        <div class="opts" data-group="hora" data-single>
+          <button class="opt" data-v="atardecer dorado con cielo rosado y naranja" aria-pressed="true">🌅 Atardecer</button>
+          <button class="opt" data-v="noche con luces de neón rosadas y turquesa reflejadas en el asfalto mojado">🌙 Noche de neón</button>
+          <button class="opt" data-v="mediodía soleado con cielo azul intenso">☀️ Mediodía</button>
+          <button class="opt" data-v="tormenta tropical con relámpagos y lluvia">⛈️ Tormenta</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <span class="lbl">5. Vehículo</span>
+        <div class="opts" data-group="veh" data-single>
+          <button class="opt" data-v="un auto deportivo convertible rojo" aria-pressed="true">🏎️ Deportivo</button>
+          <button class="opt" data-v="un muscle car clásico negro">🚗 Muscle car</button>
+          <button class="opt" data-v="una lancha rápida">🚤 Lancha</button>
+          <button class="opt" data-v="una moto deportiva">🏍️ Moto</button>
+          <button class="opt" data-v="un helicóptero">🚁 Helicóptero</button>
+          <button class="opt" data-v="">Ninguno</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="tema">6. Mensaje del reel</label>
+        <textarea id="tema" autocomplete="off">Cómo pasé de un trabajo de oficina a tener mi negocio digital con IA</textarea>
+      </div>
+
+      <div class="field">
+        <span class="lbl">7. Escenas y formato</span>
+        <div class="opts" data-group="n" data-single style="margin-bottom:10px">
+          <button class="opt" data-v="4">4 escenas</button>
+          <button class="opt" data-v="6" aria-pressed="true">6 escenas</button>
+          <button class="opt" data-v="8">8 escenas</button>
+        </div>
+        <div class="opts" data-group="ar" data-single>
+          <button class="opt" data-v="9:16" aria-pressed="true">📱 Vertical 9:16 (Reels)</button>
+          <button class="opt" data-v="16:9">🖥️ Horizontal 16:9 (YouTube)</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="out">
+      <div class="out-tabs" role="tablist">
+        <button class="tab" role="tab" data-t="master" aria-selected="true">Prompt maestro (Claude)</button>
+        <button class="tab" role="tab" data-t="img" aria-selected="false">Imagen rápida</button>
+        <button class="tab" role="tab" data-t="vid" aria-selected="false">Video rápido</button>
+      </div>
+      <div class="prompt">
+        <pre id="out"></pre>
+        <div class="prompt-foot">
+          <small id="where">Pégalo en Claude</small>
+          <button class="btn btn-primary btn-sm" id="copy">Copiar prompt</button>
+        </div>
+      </div>
+      <p class="hint" id="tabhint">El prompt maestro te da el video completo, escena por escena. Las pestañas «rápida» son para probar una sola imagen o un solo clip sin pasar por Claude.</p>
+    </div>
+  </div>
+</section>
+
+<section class="ch">
+  <div class="ch-n">Para que se vea profesional</div>
+  <h2>6 trucos que marcan la diferencia</h2>
+  <div class="tips">
+    <div class="card tip"><span class="n">1</span><div><h3>Misma ropa en todo</h3><p class="muted">Describe el vestuario igual en todas las escenas. Si cambia, parece otro personaje.</p></div></div>
+    <div class="card tip"><span class="n">2</span><div><h3>Una foto clara de frente</h3><p class="muted">Buena luz, sin lentes de sol ni gorra. Es la que mejor conserva tu cara.</p></div></div>
+    <div class="card tip"><span class="n">3</span><div><h3>Clips cortos</h3><p class="muted">De 4 a 6 segundos por escena. En Reels funcionan mejor los cortes rápidos.</p></div></div>
+    <div class="card tip"><span class="n">4</span><div><h3>Un movimiento de cámara</h3><p class="muted">Pide un solo movimiento por clip (acercamiento, travelling o dron). Varios a la vez se ven raros.</p></div></div>
+    <div class="card tip"><span class="n">5</span><div><h3>El gancho primero</h3><p class="muted">Abre con la escena más impactante y un texto corto en pantalla en el primer segundo.</p></div></div>
+    <div class="card tip"><span class="n">6</span><div><h3>Repite el bloque de estilo</h3><p class="muted">Claude te da un «STYLE LOCK». Pégalo al final de cada prompt para que todo el video combine.</p></div></div>
+  </div>
+  <div class="bad">
+    <h3>⚠️ Evita problemas de derechos</h3>
+    <ul>
+      <li>No uses el logo oficial, los personajes ni la música del juego: crea tu propia versión «inspirada en».</li>
+      <li>Usa música libre de derechos o los audios en tendencia de Instagram.</li>
+      <li>Si vendes el video a un cliente, que el protagonista sea él o su marca, nunca el juego.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="ch">
+  <div class="next">
+    <div class="ch-n">¿Te gustó?</div>
+    <h2>Aprende a hacer videos virales con IA</h2>
+    <p>Este es solo uno de los formatos. Te enseño paso a paso a crear videos animados que se comparten y hacen crecer tu cuenta.</p>
+    <div class="stack">
+      <a class="btn btn-primary" href="https://whop.com/instagram-c387/barcada-videos-virales-animados-con-ia?a=carlosbarcoc" target="_blank" rel="noopener">Quiero crear videos virales</a>
+      <a class="btn btn-wa" href="https://chat.whatsapp.com/HHZ62Td03kJEUB9937SoiW" target="_blank" rel="noopener">Unirme a la comunidad de WhatsApp</a>
+      <a class="btn btn-light" href="/guias">Ver más guías de la semana</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="soc">
+      <a href="/">Inicio</a>
+      <a href="/guias">Guías de la semana</a>
+      <a href="https://www.instagram.com/carlosbarcoc/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://youtube.com/@carlosbarco177?si=cI-s8oZaHFlION0J" target="_blank" rel="noopener">YouTube</a>
+    </div>
+    <p>© <span id="year"></span> @carlosbarcoc · Guía gratuita con fines educativos.</p>
+    <p>Contenido de fans. No está afiliado, patrocinado ni aprobado por Rockstar Games ni Take-Two Interactive. GTA y Grand Theft Auto son marcas de sus respectivos dueños. Claude es de Anthropic y Higgsfield es de Higgsfield AI.</p>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.link/25yiii" target="_blank" rel="noopener" aria-label="Escríbeme por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1s-.5-.1-.7.1-.8 1-.9 1.2-.3.2-.6.1a8.2 8.2 0 0 1-4.1-3.6c-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6a1.2 1.2 0 0 0-.8.4 3.5 3.5 0 0 0-1.1 2.6 6 6 0 0 0 1.3 3.2 13.9 13.9 0 0 0 5.3 4.7c2 .8 2.7.9 3.7.8a3.1 3.1 0 0 0 2-1.4 2.5 2.5 0 0 0 .2-1.4c-.1-.2-.3-.3-.6-.4zM12 21.8a9.9 9.9 0 0 1-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.8 9.8 0 1 1 12 21.8zm8.4-18.2A11.8 11.8 0 0 0 1.8 17.8L.1 24l6.4-1.7a11.8 11.8 0 0 0 5.6 1.4A11.8 11.8 0 0 0 20.4 3.6z"/></svg>
+</a>
+<div class="toast" id="toast">¡Copiado!</div>
+
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  $("year").textContent = new Date().getFullYear();
+
+  var TIPOS = {
+    trailer:{ es:"Tráiler cinematográfico", arco:"presentación del personaje, tensión, momento épico y cierre con título", en:"epic cinematic trailer shot, dramatic heroic pose, slow-motion feel", cam:"slow dolly-in toward the character, then a subtle push" },
+    carga:{ es:"Pantalla de carga del juego (portada ilustrada)", arco:"una ilustración tipo pantalla de carga por escena, cada una con una pose y un escenario distintos", en:"video game loading-screen illustration, character in a bold confident pose, framed composition with strong silhouette", cam:"very slow parallax zoom, background and foreground moving at different speeds" },
+    persecucion:{ es:"Persecución de alta velocidad", arco:"inicio tranquilo, la huida, la persecución, el escape final", en:"high-speed chase, motion blur, flashing red and blue police lights in the background", cam:"low tracking shot following the vehicle at speed, slight camera shake" },
+    dia:{ es:"Un día en la ciudad (estilo de vida)", arco:"mañana, tarde en la playa, atardecer manejando, noche en la ciudad", en:"lifestyle montage moment, relaxed confident attitude, vibrant city life", cam:"smooth gimbal follow shot, gentle orbit around the character" },
+    mision:{ es:"Misión: construir un negocio digital", arco:"pantalla de misión, el reto, el trabajo con la laptop y la IA, la recompensa", en:"open-world mission scene, entrepreneur working on a laptop with glowing screens, ambitious mood", cam:"slow push-in on the character, ending on the laptop screen glow" },
+    antes:{ es:"Antes y después: de la vida normal al juego", arco:"escena realista y aburrida, la transformación, la vida estilo videojuego, el mensaje final", en:"transformation moment from ordinary real life into a vibrant open-world game look", cam:"whip pan transition into a fast dolly-in" }
+  };
+  var EN = {
+    "playa de arena blanca con palmeras y hoteles art déco iluminados con neón":"white-sand beach with palm trees and neon-lit art deco hotels",
+    "autopista costera junto al mar con puentes largos":"coastal highway by the ocean with long bridges",
+    "centro de la ciudad de noche con rascacielos y carteles luminosos":"downtown at night with skyscrapers and glowing billboards",
+    "pantanos con manglares, lanchas y niebla":"misty mangrove swamps with airboats",
+    "puerto con yates y contenedores":"harbor with yachts and shipping containers",
+    "penthouse de lujo con vista al mar y piscina":"luxury penthouse with ocean view and pool",
+    "gasolinera retro de carretera":"retro roadside gas station",
+    "atardecer dorado con cielo rosado y naranja":"golden-hour sunset, pink and orange sky",
+    "noche con luces de neón rosadas y turquesa reflejadas en el asfalto mojado":"night, pink and teal neon reflected on wet asphalt",
+    "mediodía soleado con cielo azul intenso":"sunny midday, deep blue sky",
+    "tormenta tropical con relámpagos y lluvia":"tropical storm with lightning and rain",
+    "un auto deportivo convertible rojo":"a red convertible sports car",
+    "un muscle car clásico negro":"a classic black muscle car",
+    "una lancha rápida":"a speedboat",
+    "una moto deportiva":"a sport motorcycle",
+    "un helicóptero":"a helicopter"
+  };
+  function en(v){ return EN[v] || v; }
+  var state = { tipo:"trailer", esc:[], hora:"", veh:"", n:"6", ar:"9:16" };
+
+  // Botones de opciones
+  document.querySelectorAll(".opts[data-group]").forEach(function(g){
+    var key = g.dataset.group, single = g.hasAttribute("data-single");
+    g.addEventListener("click", function(e){
+      var b = e.target.closest(".opt"); if (!b) return;
+      if (single){ g.querySelectorAll(".opt").forEach(function(x){ x.setAttribute("aria-pressed", x === b ? "true" : "false"); }); }
+      else {
+        var on = b.getAttribute("aria-pressed") === "true";
+        if (on && g.querySelectorAll('[aria-pressed=true]').length === 1) return; // al menos 1
+        b.setAttribute("aria-pressed", on ? "false" : "true");
+      }
+      read(); render();
+    });
+  });
+  ["prota","tema"].forEach(function(id){ $(id).addEventListener("input", render); });
+  $("foto").addEventListener("change", render);
+
+  function read(){
+    document.querySelectorAll(".opts[data-group]").forEach(function(g){
+      var vals = Array.prototype.map.call(g.querySelectorAll('[aria-pressed=true]'), function(b){ return b.dataset.v; });
+      state[g.dataset.group] = g.hasAttribute("data-single") ? vals[0] : vals;
+    });
+  }
+
+  var STYLE_EN = "GTA VI inspired open-world video game art style, semi-realistic painted look, saturated pink, orange and teal palette, palm trees, humid Florida-like coastal light, cinematic film grain, sharp details, no text, no logos, no watermarks";
+
+  function master(){
+    var t = TIPOS[state.tipo], prota = $("prota").value.trim() || "un personaje carismático", foto = $("foto").checked;
+    var esc = state.esc.length ? state.esc.join("; ") : "una ciudad costera tropical";
+    var veh = state.veh ? state.veh : "sin vehículo";
+    var tema = $("tema").value.trim() || "un mensaje inspirador";
+    return [
+      "Actúa como director creativo y experto en prompts para generar imagen y video con IA en Higgsfield. Vamos a crear un video corto viral con estética de videojuego de mundo abierto estilo GTA VI (contenido de fans: sin logos, personajes ni música oficiales).",
+      "",
+      "DATOS DEL VIDEO",
+      "- Tipo: " + t.es + " (arco: " + t.arco + ")",
+      "- Protagonista: " + prota + (foto ? ". Usaré mi foto como referencia: conserva mi rostro, mis rasgos y mi peinado idénticos en todas las escenas." : "."),
+      "- Escenarios: " + esc,
+      "- Hora y ambiente: " + state.hora,
+      "- Vehículo: " + veh,
+      "- Mensaje del reel: " + tema,
+      "- Escenas: " + state.n + ", de 4 a 6 segundos cada una",
+      "- Formato: " + state.ar + (state.ar === "9:16" ? " vertical para Reels y TikTok" : " horizontal para YouTube"),
+      "- Textos en pantalla: en español, máximo 6 palabras",
+      "",
+      "ENTRÉGAME",
+      "1. El concepto en 2 líneas y el gancho de los primeros 2 segundos.",
+      "2. Una tabla con las " + state.n + " escenas: duración, qué pasa, plano, movimiento de cámara y texto en pantalla.",
+      "3. Un bloque STYLE LOCK en inglés (estilo, paleta, luz, vestuario fijo del protagonista) que repetiré al final de cada prompt.",
+      "4. Para cada escena:",
+      "   a) PROMPT DE IMAGEN en inglés para Nano Banana Pro en Higgsfield" + (foto ? " (con mi foto como imagen de referencia)" : "") + ", formato " + state.ar + ".",
+      "   b) PROMPT DE VIDEO en inglés para Cinema Studio Video 3.0 en Higgsfield (imagen a video, la imagen de la escena como primer cuadro): acción, un solo movimiento de cámara, ritmo y duración.",
+      "5. La música sugerida (libre de derechos) y los efectos de sonido por escena.",
+      "6. La descripción para Instagram con un CTA para comentar una palabra clave.",
+      "",
+      "REGLAS",
+      "- Describe la estética con palabras propias: ilustración semi-realista de videojuego, colores saturados, neón rosado y turquesa, palmeras, luz tropical, grano de cine.",
+      "- El mismo protagonista y el mismo vestuario en todas las escenas.",
+      "- Nada de logos, marcas, nombres ni personajes oficiales del juego.",
+      "- Prompts concretos y visuales, sin palabras de relleno, listos para copiar y pegar."
+    ].join("\n");
+  }
+  function img(){
+    var t = TIPOS[state.tipo], prota = $("prota").value.trim() || "a charismatic character";
+    var foto = $("foto").checked;
+    return (foto ? "[Sube tu foto como imagen de referencia]\n\n" : "") +
+      (state.ar === "9:16" ? "Vertical " : "Horizontal ") + state.ar + " frame. " + t.en + ". Main character: " + (foto ? "the person in the reference photo, keep the exact same face and features, " : "") + prota + ". " +
+      "Location: " + en(state.esc[0] || "tropical coastal city") + ". Time: " + en(state.hora) + ". " + (state.veh ? "Vehicle: " + en(state.veh) + ". " : "") +
+      "Style: " + STYLE_EN + ".";
+  }
+  function vid(){
+    var t = TIPOS[state.tipo];
+    return "[Sube la imagen de la escena como primer cuadro (start image)]\n\n" +
+      "Animate this image. Camera: " + t.cam + ". " +
+      "Subtle life in the scene: palm trees swaying, neon signs flickering, light reflections moving" + (state.veh ? ", the vehicle in motion" : "") + ". " +
+      "Keep the character's face and outfit identical to the image. Smooth cinematic motion, 5 seconds, " + state.ar + ", no text, no logos.";
+  }
+
+  var tab = "master";
+  var HINTS = {
+    master:["Pégalo en Claude","El prompt maestro te da el video completo, escena por escena. Las pestañas «rápida» son para probar una sola imagen o un solo clip sin pasar por Claude."],
+    img:["Pégalo en Higgsfield · Imagen · Nano Banana Pro","Prueba rápida de una imagen. Para un video completo y coherente, usa el prompt maestro."],
+    vid:["Pégalo en Higgsfield · Video · Cinema Studio Video 3.0","Sube primero la imagen que creaste y pega esto como prompt del video."]
+  };
+  function current(){ return tab === "master" ? master() : tab === "img" ? img() : vid(); }
+  function render(){
+    var text = current();
+    var out = $("out"); out.textContent = text;
+    // Resalta los títulos del prompt maestro
+    out.innerHTML = out.innerHTML.replace(/^(DATOS DEL VIDEO|ENTRÉGAME|REGLAS)$/gm, "<b>$1</b>");
+    $("where").textContent = HINTS[tab][0]; $("tabhint").textContent = HINTS[tab][1];
+  }
+  document.querySelectorAll(".tab").forEach(function(b){
+    b.addEventListener("click", function(){
+      tab = b.dataset.t;
+      document.querySelectorAll(".tab").forEach(function(x){ x.setAttribute("aria-selected", x === b ? "true" : "false"); });
+      render();
+    });
+  });
+
+  var tt;
+  function toast(m){ var t = $("toast"); t.textContent = m; t.classList.add("show"); clearTimeout(tt); tt = setTimeout(function(){ t.classList.remove("show"); }, 1600); }
+  $("copy").addEventListener("click", function(){
+    var text = current(), btn = this;
+    function ok(){ toast("¡Prompt copiado!"); btn.textContent = "✓ Copiado"; setTimeout(function(){ btn.textContent = "Copiar prompt"; }, 1500); }
+    function fb(){ var ta = document.createElement("textarea"); ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select(); try { document.execCommand("copy"); ok(); } catch(e){} document.body.removeChild(ta); }
+    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(ok, fb); else fb();
+  });
+
+  read(); render();
+})();
+</script>
+</body>
+</html>
